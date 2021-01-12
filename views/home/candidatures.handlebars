@@ -14,20 +14,21 @@
                 <div class="shop-section">
                     
                         <div class="row">
-                            <% for(let i = 0; i<length; i++){%>
+                            {{#each candidates}}
                                 <div class="shop-item col-lg-4 col-md-6 col-sm-6">
                                     <div class="inner-box">
                                         <div class="product_description">
-                                            <h3><a href="#"><%= data[i].name %></a></h3>
-                                            <h5><a><%= data[i].phone %></a></h5>
-                                            <h3><a><%= data[i].email %></a></h3>
+                                            <h3><a href="#">{{nom}}</a></h3>
+                                            <h5><a>{{email}}</a></h5>
+                                            <h3><a>{{telephone}}</a></h3>
                                             <div class="price">
-                                                <span><%= data[i].description %></span>
+                                                <span>{{desciption}}</span>
                                             </div>
                                         </div>
+										<h6>{{date}}</h6>
                                     </div>
                                 </div>
-                            <%}%>
+                           {{/each}}
 				</div><!-- End row -->
 				<hr>
 				<button type="submit" class="btn_1 col-sm-5" data-toggle="modal" data-target="#exampleModal">Poster une candidature</button>
@@ -43,7 +44,7 @@
 								<div class="modal-body">
 									<div>
 										<div id="message-contact"></div>
-										<form method="POST" action="https://hope-consulting.herokuapp.com/candidatures">
+										<form method="POST" action="/candidatures">
 											<div class="row">
 												<div class="col-md-12">
 													<div class="form-group">
