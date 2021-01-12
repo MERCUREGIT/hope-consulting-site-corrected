@@ -66,12 +66,15 @@ router.get('/offres-immobilier',(req, res)=>{
 
 router.post('/groundOffers',  (req, res)=>{
     if(req.files){
-        let file = req.files.file;
+        console.log(req.files.file_contact)
+        let file = req.files.file_contact;
         var fileName = Date.now() + '-' + file.name;
         let dirUploads = './public/uploads/';
         file.mv(dirUploads + fileName, err => {
             if (err) throw err;
         });
+
+
         console.log(req.files);
     }else {
         fileName = '';
@@ -85,10 +88,14 @@ router.post('/groundOffers',  (req, res)=>{
         loaction: req.body.ville_contact,
         topic: req.body.object_contact,
         description: req.body.message_contact,
-        image: fileName
+        image: "" + fileName
     });
 
-})
+
+newPost.save().then(()=>{
+    res.redirect("/offres-immobilier");
+});
+});
 
 
 
