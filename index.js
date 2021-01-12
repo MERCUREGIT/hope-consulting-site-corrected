@@ -61,12 +61,12 @@ app.use((req, res, next) => {
 // load routes
 
 const home = require('./routes/home/index');
-// const admin = require('./routes/admin/index');
+const admin = require('./routes/admin/index');
 
 // Use routes
 
 app.use('/', home);
-// app.use('/admin', admin);
+app.use('/admin', admin);
 
 
 // setting up server end port number
