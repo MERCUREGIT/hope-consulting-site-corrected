@@ -27,20 +27,6 @@ router.get('/about', (req, res) => {
 });
 
 
-
-// router.get('/login', (req, res) => {
-//     res.render('home/login');
-// });
-
-// router.get('/logout', (req, res) => {
-//     req.logOut();
-//     res.redirect('/login');
-// })
-
-
-
-// portfolio files
-
 router.get('/realisations', (req, res) => {
     RealisationEtSuivi.find({}).then(realisationEtSuivi => {
         res.render('home/realisations', { realisationEtSuivi: realisationEtSuivi});
@@ -58,6 +44,16 @@ router.get('/plans', (req, res) => {
 });
 
 
+router.post('/plans',(req,res)=>{
+    instance = new PlanEtDessin(
+       { image: req.body.image,
+    nom:req.body.nom}
+    ).save().then(()=>{
+        res.send("done")
+    }) ;
+    
+})
+
 // Construction services and works
 
 
@@ -69,6 +65,28 @@ router.get('/offres-immobilier',(req, res)=>{
 
 
 router.post('/groundOffers',  (req, res)=>{
+    if(req.files){
+        let file = req.files.file;
+        var fileName = Date.now() + '-' + file.name;
+        let dirUploads = './public/uploads/';
+        file.mv(dirUploads + fileName, err => {
+            if (err) throw err;
+        });
+        console.log(req.files);
+    }else {
+        fileName = '';
+    }
+
+    const newPost = new Immobilier({
+        offre:true,
+        vendor_name: req.body.name_contact,
+        phone_number: req.body.tel_contact,
+        email: req.body.email_contact,
+        loaction: req.body.ville_contact,
+        topic: req.body.object_contact,
+        description: req.body.message_contact,
+        image: fileName
+    });
 
 })
 
@@ -99,12 +117,7 @@ router.post('/demandes-immobilier',(req, res)=>{
         file.mv(dirUploads + fileName, err => {
             if (err) throw err;
         });
-
-
         console.log(req.files);
-
-        
-
     }else {
         fileName = '';
     }
