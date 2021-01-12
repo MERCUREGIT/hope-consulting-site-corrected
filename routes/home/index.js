@@ -128,24 +128,4 @@ router.get("/test",(req,res)=>{
 })
 
 
-
-
-
-
-
-
-/**
- * Decsription: admin routes
- */
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;
