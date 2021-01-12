@@ -1,0 +1,12 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/mercbueo/hope-consulting 
+    - /bin/cp -R config $DEPLOYPATH
+    - /bin/cp -R helpers $DEPLOYPATH
+    - /bin/cp -R models $DEPLOYPATH
+    - /bin/cp -R public $DEPLOYPATH
+    - /bin/cp -R routes $DEPLOYPATH
+    - /bin/cp -R views $DEPLOYPATH
+    - /bin/cp index.js $DEPLOYPATH
+    - /bin/cp package.json $DEPLOYPATH

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Hope Consulting">
+	<title>Hope Consulting</title>
+
+	<!-- GOOGLE WEB FONT-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300,400,700" rel="stylesheet">
+
+	<!-- BASE CSS -->
+	<link href="css/animate.min.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
+
+	<!-- YOUR CUSTOM CSS -->
+	<link href="css/custom.css" rel="stylesheet">
+	
+	<!-- LayerSlider stylesheet -->
+	<link href="layerslider/css/layerslider.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+{{>home/header}}
+	<div id="preloader">
+		<div data-loader="circle-side"></div>
+	</div><!-- /Preload -->
+	<div class="layer"></div>
+
+    {{{body}}}
+
+{{>home/footer}}
+   
+</html>

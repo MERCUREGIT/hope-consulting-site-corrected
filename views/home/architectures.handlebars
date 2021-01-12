@@ -1,0 +1,48 @@
+<section class="parallax_window_in short" data-parallax="scroll" data-image-src="img/subheader_in_2.jpg" data-natural-width="1400" data-natural-height="400">
+		<div id="sub_content_in">
+			<div class="container">
+				<h1>Architectures internes et externes</h1>
+				<p>Ici nous vous presentons les plans interieurs et exterieurs de nos realiastions</p>
+			</div>
+		</div>
+	</section><!-- End section -->
+    
+   <main>
+	   <div class="container margin_60">
+		   <h2 class="main_title"><em></em>Quelques images</h2>
+		   <div class="grid">
+				<ul class="magnific-gallery">
+					{{#each architectures}}
+						<li>
+							<figure>
+								<img src={{image}} alt="">
+								<figcaption>
+									<div class="caption-content">
+										<a href={{image}} title="Photo title" data-effect="mfp-zoom-in">
+											<i class="pe-7s-albums"></i>
+											<p>{{nom}}</p>
+										</a>
+									</div>
+								</figcaption>
+							</figure>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+			<!-- /grid gallery -->
+	   </div>
+	   <!--/container-->
+	</main><!--/main-->
+    
+    <div class="bg_content">
+		<div class="container margin_120">
+			<h2 class="main_title"><em></em>Placements intérimaires</h2>
+			<p>Nous rapprochons les entreprises de la main d'oeuvre dont ils ont besoin.</p>
+			<div id="message-analysis"></div>
+			<div class="row text-center">
+				<a class="btn_1 col-sm-5" href="offres.html">Offre</a>
+				<span class="col-sm-2"></span>
+				<a class="btn_1 col-sm-5" href="candidatures.html">Candidature</a>
+			</div>
+		</div>
+	</div>
