@@ -72,7 +72,7 @@ router.get('/demandes-immobilier',(req, res)=>{
 
 
 
-
+// post des offre et demande immobilier
 
 router.post('/groundOffers',  (req, res)=>{
     if(req.files){
@@ -136,7 +136,7 @@ router.post('/demandes-immobilier',  (req, res)=>{
 
 
 newPost.save().then(()=>{
-    res.redirect("/offres-immobilier");
+    res.redirect("/demandes-immobilier");
 });
 });
 
@@ -219,39 +219,20 @@ router.post('/demandes-immobilier',(req, res)=>{
 
 
 
-// app.get('/comptabilite', (req, res)=>{
-//     res.render('comptabilite');
-// });
+app.get('/comptabilite', (req, res)=>{
+    res.render('home/comptabilite');
+});
 
-// app.get('/offres-immobilier', async (req, res)=>{
-//     let offers = new Offers();
-//     try {    
-//         let response = await offers.getGroundOffers();
-//         res.render('offres-immobilier', {data: response, length: response.length});
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
 
-// app.get('/demandes-immobilier', async (req, res)=>{
-//     let demand = new Candidatures();
-//     try {
-//         let response = await demand.getDemand();
-//         res.render('demandes', {data: response, length: response.length});
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
-
-// app.get('/offres-emploi', async (req, res)=>{
-//     let offers = new Offers();
-//     try {
-//         let response = await offers.getEmploymentOffers();
-//         res.render('offres', {data: response, length: response.length});
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
+app.get('/offres-emploi', async (req, res)=>{
+   
+    try {
+        let response = await offers.getEmploymentOffers();
+        res.render('offres', {data: response, length: response.length});
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 // app.get('/candidatures', async (req, res)=>{
 //     let candidatures = new Candidatures();
