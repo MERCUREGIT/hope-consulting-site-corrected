@@ -14,22 +14,22 @@
                 <div class="shop-section">
                     
                         <div class="row">
-                            <%for(let i = 0; i<length; i++){%>
+                           {{#each immobilier}}
                                 <div class="shop-item col-lg-4 col-md-6 col-sm-6">
                                     <div class="inner-box">
                                         <div class="image-box">
-                                            <div><%= data[i].description %></div>
+                                            <div>{{description}}</div>
                                         </div>
                                         <div class="product_description">
-                                            <h3><a href="#"><%= data[i].name%></a></h3>
+                                            <h3><a href="#">{{date}}</a></h3>
                                             <div class="price">
-                                                <span><%= data[i].object%></span>
+                                                <span>{{topic}}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /article -->
-                            <%}%>
+                           {{/each}}
                             
                             
                         </div>

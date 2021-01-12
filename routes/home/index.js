@@ -58,10 +58,20 @@ router.post('/plans',(req,res)=>{
 
 
 router.get('/offres-immobilier',(req, res)=>{
-    Immobilier.find({}).then(immobilier => {
+    Immobilier.find({offre:true}).then(immobilier => {
         res.render('home/offres-immobilier', { immobilier: immobilier});
     });
 });
+router.get('/demandes-immobilier',(req, res)=>{
+    Immobilier.find({offre:false}).then(immobilier => {
+        res.render('home/offres-immobilier', { immobilier: immobilier});
+    });
+});
+
+
+
+
+
 
 
 router.post('/groundOffers',  (req, res)=>{
@@ -82,6 +92,39 @@ router.post('/groundOffers',  (req, res)=>{
 
     const newPost = new Immobilier({
         offre:true,
+        vendor_name: req.body.name_contact,
+        phone_number: req.body.tel_contact,
+        email: req.body.email_contact,
+        loaction: req.body.ville_contact,
+        topic: req.body.object_contact,
+        description: req.body.message_contact,
+        image: "" + fileName
+    });
+
+
+newPost.save().then(()=>{
+    res.redirect("/offres-immobilier");
+});
+});
+
+router.post('/demandes-immobilier',  (req, res)=>{
+    if(req.files){
+        console.log(req.files.file_contact)
+        let file = req.files.file_contact;
+        var fileName = Date.now() + '-' + file.name;
+        let dirUploads = './public/uploads/';
+        file.mv(dirUploads + fileName, err => {
+            if (err) throw err;
+        });
+
+
+        console.log(req.files);
+    }else {
+        fileName = '';
+    }
+
+    const newPost = new Immobilier({
+        offre:false,
         vendor_name: req.body.name_contact,
         phone_number: req.body.tel_contact,
         email: req.body.email_contact,
@@ -142,7 +185,36 @@ router.post('/demandes-immobilier',(req, res)=>{
         category: req.body.category,
         file: fileName
     });
-})
+});
+
+
+router.post('/demandes-immobilier',(req, res)=>{
+    if(!isEmpty(req.files)){
+        let file = req.files.file;
+        var fileName = Date.now() + '-' + file.name;
+        let dirUploads = './public/uploads/';
+        file.mv(dirUploads + fileName, err => {
+            if (err) throw err;
+        });
+        console.log(req.files);
+    }else {
+        fileName = '';
+    }
+
+    const newPost = new Immobilier({
+        vendor_name: req.body.name_contact,
+        email: req.body.tel_contact,
+        email: req.body.email_contact,
+        email: req.body.ville_contact,
+        email: req.body.object_contact,
+        email: req.body.message_contact,
+        email: fileName,
+        allowComments: allowComments,
+        body: req.body.body,
+        category: req.body.category,
+        file: fileName
+    });
+});
 
 
 
