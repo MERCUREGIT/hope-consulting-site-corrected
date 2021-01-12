@@ -38,7 +38,7 @@ router.post('/architectures', (req, res)=>{
         image: req.body.image,
         nom:req.body.nom
     }).save().then(()=>{
-        res.redirect('/home');
+        res.redirect('https://hope-consulting-dashboard.netlify.app/home');
     }).catch(err=>{
         
     })
@@ -49,7 +49,7 @@ router.post('/realisations', (req, res)=>{
         image: req.body.image,
         nom:req.body.nom
     }).save().then(()=>{
-        res.redirect('/home');
+        res.redirect('https://hope-consulting-dashboard.netlify.app/home');
     }).catch(err=>{
         
     })
@@ -60,7 +60,7 @@ router.post('/plans', (req, res)=>{
         image: req.body.image,
         nom:req.body.nom
     }).save().then(()=>{
-        res.redirect('/home');
+        res.redirect('https://hope-consulting-dashboard.netlify.app/home');
     }).catch(err=>{
         
     })
