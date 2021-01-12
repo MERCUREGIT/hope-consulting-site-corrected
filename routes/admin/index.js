@@ -9,10 +9,9 @@ const RealisationEtSuivi = require('../../models/RealisationEtSuivi');
 
 
 
-
-
-
-
+router.get('/', (req, res)=>{
+    res.redirect('https://hope-consulting-dashboard.netlify.app/')
+});
 
 router.get('/details/:id', (req, res) => {
     Post.findOne({ _id: req.params.id }).then(post => {
@@ -20,15 +19,6 @@ router.get('/details/:id', (req, res) => {
         res.render('home/details', { post: post });
     });
 });
-
-
-
-
-router.get('/', (req, res)=>{
-    res.redirect('https://hope-consulting-dashboard.netlify.app/')
-});
-
-
 
 
 // used API

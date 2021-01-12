@@ -7,6 +7,7 @@ const OffreEmploi = require('../../models/OffreEmploi');
 const RealisationEtSuivi = require('../../models/RealisationEtSuivi');
 const {postHelper} = require('../../helpers/postHelper');
 const Candidature = require('../../models/Candidature');
+const { isEmpty, uploadDir } = require('../../helpers/upload-helper');
 
 
 router.all('/*', (req, res, next) => {
@@ -125,5 +126,111 @@ router.get("/test",(req,res)=>{
         res.json(docc);
     })
 })
+
+
+
+
+
+
+
+
+/**
+ * Decsription: admin routes
+ */
+
+
+
+
+
+
+router.get('/admin', (req, res)=>{
+    res.redirect('https://hope-consulting-dashboard.netlify.app/')
+});
+
+
+// used API
+
+router.get('/admin/offres-immobilier-admin', (req, res)=>{
+    Immobilier.find({}).then(imobilier=>{
+        res.json(imobilier);
+    });
+});
+
+
+
+//works done post
+
+router.post('/admin/architectures', (req, res)=>{
+    Architecture({
+        image: req.body.image,
+        nom:req.body.nom
+    }).save().then(()=>{
+        res.redirect('/home');
+    }).catch(err=>{
+        
+    })
+});
+
+router.post('/admin/realisations', (req, res)=>{
+    RealisationEtSuivi({
+        image: req.body.image,
+        nom:req.body.nom
+    }).save().then(()=>{
+        res.redirect('/home');
+    }).catch(err=>{
+        
+    })
+});
+
+router.post('/admin/plans', (req, res)=>{
+    PlanEtDessin({
+        image: req.body.image,
+        nom:req.body.nom
+    }).save().then(()=>{
+        res.redirect('/home');
+    }).catch(err=>{
+        
+    })
+});
+
+// ######################################################
+
+
+// Unused for now
+
+router.get('/admin/architecture-admin', (req, res)=>{
+    Architecture.find({}).then(architecture=>{
+        res.status(200).json(architecture);
+    });
+});
+
+router.get('/admin/realisation-admin', (req, res)=>{
+    RealisationEtSuivi.find({}).then(realisationEtSuivi=>{
+        res.status(200).json(realisationEtSuivi);
+    });
+});
+
+router.get('/admin/plans-admin', (req, res)=>{
+    PlanEtDessin.find({}).then(plan=>{
+        res.status(200).json(plan);
+    });
+});
+
+
+
+
+router.delete('/admin/denyGroundOffer/:id', (req, res)=>{
+    Immobilier.findOne({_id: req.params.id }).then(immobilier=>{
+        fs.unlink(uploadDir + immobilier.file, err => {});
+        immobilier.remove();
+        res.redirect("https://hope-consulting-dashboard.netlify.app/home");
+    });
+});
+
+
+
+
+
+
 
 module.exports = router;
