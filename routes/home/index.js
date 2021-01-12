@@ -6,16 +6,15 @@ const PlanEtDessin = require('../../models/PlanEtDessin');
 const OffreEmploi = require('../../models/OffreEmploi');
 const RealisationEtSuivi = require('../../models/RealisationEtSuivi');
 const {postHelper} = require('../../helpers/postHelper');
-const User = require('../../models/User');
 const Candidature = require('../../models/Candidature');
-const bcryptjs = require('bcryptjs');
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+
 
 router.all('/*', (req, res, next) => {
     req.app.locals.layout = 'home';
     next();
 });
+
+/*****************get general pour autre page ********/
 
 router.get('/', (req, res)=>{
     res.render('home/index');
@@ -32,7 +31,7 @@ router.get('/comptabilite', (req, res)=>{
 });
 
 
-
+/*****************gest des realisation ********/
 
 router.get('/realisations', (req, res) => {
     RealisationEtSuivi.find({}).then(realisationEtSuivi => {
@@ -51,17 +50,7 @@ router.get('/plans', (req, res) => {
 });
 
 
-router.post('/plans',(req,res)=>{
-    instance = new PlanEtDessin(
-       { image: req.body.image,
-    nom:req.body.nom}
-    ).save().then(()=>{
-        res.send("done")
-    }) ;
-    
-})
-
-// Construction services and works
+//*****************get demande et offre immobilier ********/
 
 
 router.get('/offres-immobilier',(req, res)=>{
@@ -78,154 +67,30 @@ router.get('/demandes-immobilier',(req, res)=>{
 
 
 
-
-// post des offre et demande immobilier
+/*****************post demande et offre immobilier ********/
 
 router.post('/groundOffers',  (req, res)=>{
 
-
-    // postHelper(req, res, Immobilier(),true,"/offres-immobilier");
-
+postHelper(req, res, Immobilier(),true,"/offres-immobilier");
 
 
-        if(req.files){
-        console.log(req.files.file_contact)
-        let file = req.files.file_contact;
-        var fileName = Date.now() + '-' + file.name;
-        let dirUploads = './public/uploads/';
-        file.mv(dirUploads + fileName, err => {
-            if (err) throw err;
-        });
-
-
-        console.log(req.files);
-    }else {
-        fileName = '';
-    }
-
-    const newPost = new Immobilier({
-        offre:true,
-        vendor_name: req.body.name_contact,
-        phone_number: req.body.tel_contact,
-        email: req.body.email_contact,
-        loaction: req.body.ville_contact,
-        topic: req.body.object_contact,
-        description: req.body.message_contact,
-        image: "" + fileName
-    });
-
-
-newPost.save().then(()=>{
-    res.render("home/offres-immobilier");
-});
 });
 
 router.post('/demandes-immobilier',  (req, res)=>{
-    if(req.files){
-        console.log(req.files.file_contact)
-        let file = req.files.file_contact;
-        var fileName = Date.now() + '-' + file.name;
-        let dirUploads = './public/uploads/';
-        file.mv(dirUploads + fileName, err => {
-            if (err) throw err;
-        });
 
-
-        console.log(req.files);
-    }else {
-        fileName = '';
-    }
-
-    const newPost = new Immobilier({
-        offre:false,
-        vendor_name: req.body.name_contact,
-        phone_number: req.body.tel_contact,
-        email: req.body.email_contact,
-        loaction: req.body.ville_contact,
-        topic: req.body.object_contact,
-        description: req.body.message_contact,
-        image: "" + fileName
-    });
-
-
-newPost.save().then(()=>{
-    res.redirect("/demandes-immobilier");
-});
+    postHelper(req, res, Immobilier(),false,"/demandes-immobilier");
 });
 
+
+
+/************************Emplois Post *************************/
 
 router.post('/employmentOffers',  (req, res)=>{
-    if(req.files){
-        console.log(req.files.file_contact)
-        let file = req.files.file_contact;
-        var fileName = Date.now() + '-' + file.name;
-        let dirUploads = './public/uploads/emploi/';
-        file.mv(dirUploads + fileName, err => {
-            if (err) throw err;
-        });
-
-
-        console.log(req.files);
-    }else {
-        fileName = '';
-    }
-
-    const newPost = new OffreEmploi({
-        offre:true,
-        vendor_name: req.body.name_contact,
-        phone_number: req.body.tel_contact,
-        email: req.body.email_contact,
-        loaction: req.body.ville_contact,
-        topic: req.body.object_contact,
-        description: req.body.message_contact,
-        image: "" + fileName
-    });
-
-
-newPost.save().then(()=>{
-    res.redirect("/offres-emploi");
-});
-});
-
-
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/admin',
-        failureRedirect: '/login',
-        failureFlash: true
-    })(req, res, next)
-});
-
-
-
-
-
-
-
-
-
-
-router.get('/offres-emploi', (req, res)=>{
-    OffreEmploi.find({}).then(offers=>{
-        res.render('home/offres',{
-            offers:offers
-        });
-    });
-})
-
-
-
-
-router.get('/candidatures', (req, res)=>{
-     Candidature.find({}).then(candidates=>{
-         res.render('home/candidatures',{
-            candidates:candidates
-         });
-     });
+    postHelper(req, res, OffreEmploi(),true,"/offres-emploi");
 });
 
 router.post('/candidatures', (req, res)=>{
-    let instance = Candidature({
+    Candidature({
         nom:req.body.name_contact,
         telephone:req.body.tel_contact,
         email:req.body.email_contact,
@@ -236,86 +101,29 @@ router.post('/candidatures', (req, res)=>{
 })
 
 
+/************************Emplois get *************************/
 
-
-// router.get('/details/:id', (req, res) => {
-//     Post.findOne({ _id: req.params.id }).then(post => {
-//         console.log(post)
-//         res.render('home/details', { post: post });
-//     });
-// });
-
-
-// app.get('/offres-immobilier-admin', async (req, res)=>{
-//     let offers = new Offers();
-//     try {
-//         let response = await offers.getGroundOffersAdmin();
-//         res.send(response);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
-
-// app.get('/offres-admin', async (req, res)=>{
-//     let offers = new Offers();
-//     try {
-//         let response = await offers.getOffersAdmin();
-//         res.send(response);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
-
-// app.post('/groundOffers', (req, res)=>{
-//     let offers = new Offers();
-//     offers.addGroundOffers(req);
-//     res.redirect('/offres-immobilier');
-// });
-
-// app.post('/employmentOffers', (req, res)=>{
-//     let offers = new Offers();
-//     offers.addEmploymentOffers(req);
-//     res.redirect('/offres-emploi');
-// });
-
-// app.post('/candidatures', urlencodedParser, (req, res)=>{
-//     let candidate = new Candidatures();
-//     candidate.addCandidate(req.body);
-//     res.redirect('/candidatures');
-// });
-
-// app.post('/demandes-immobilier', urlencodedParser, (req, res)=>{
-//     let demand = new Candidatures();
-//     demand.addDemand(req.body);
-//     res.redirect('/demandes-immobilier');
-// })
-
-// // look for form stuffs here
-
-// router.get('/register', (req, res) => {
-//     res.render('home/register');
-// });
-
-router.post('/register', (req, res) => {
-
-    const newUser = new User({
-
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-    })
-    bcryptjs.genSalt(10, (err, salt) => {
-        bcryptjs.hash(newUser.password, salt, (err, hash) => {
-            newUser.password = hash;
-            newUser.save().then(result => {
-                req.flash('success_message', "You are now registered")
-                res.redirect('/login');
-            });
+router.get('/offres-emploi', (req, res)=>{
+    OffreEmploi.find({}).then(offers=>{
+        res.render('home/offres',{
+            offers:offers
         });
     });
 });
 
+router.get('/candidatures', (req, res)=>{
+     Candidature.find({}).then(candidates=>{
+         res.render('home/candidatures',{
+            candidates:candidates
+         });
+     });
+});
 
+
+router.get("/test",(req,res)=>{
+    Candidature.find({}).then(docc=>{
+        res.json(docc);
+    })
+})
 
 module.exports = router;

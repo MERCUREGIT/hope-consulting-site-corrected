@@ -33,7 +33,7 @@ module.exports = {
     
            dbmodel.save().then(()=>{
                console.log(req)
-               res.render("home/offres-immobilier")
+               res.redirect("/offres-immobilier")
     });
     }
 }

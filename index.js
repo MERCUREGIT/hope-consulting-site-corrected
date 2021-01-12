@@ -13,7 +13,7 @@ const flash = require('connect-flash');
 const passport = require('passport')
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://hopetest:1234@cluster0.mcou4.mongodb.net/cms?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((db) => {
+mongoose.connect('mongodb+srv://hopetest:1234@cluster0.mcou4.mongodb.net/hope-consulting?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((db) => {
     console.log("MONGO CONNECTED");
 }).catch(error => console.log(error));
 
@@ -26,11 +26,7 @@ app.use(upload());
 // method override
 app.use(methodOverride('_method'));
 
-
-
 const { select, generateTime } = require('./helpers/handlebars-helpers');
-
-
 
 // load engines
 app.engine('handlebars', exphbs({
@@ -55,6 +51,7 @@ app.use(passport.session());
 
 
 // local variables using middleware
+
 app.use((req, res, next) => {
     res.locals.success_message = req.flash('success_message');
     res.locals.user = req.user || null;
@@ -62,19 +59,17 @@ app.use((req, res, next) => {
 })
 
 // load routes
-const home = require('./routes/home/index');
-// const admin = require('./routes/admin/index');
-// const posts = require('./routes/admin/post');
-// const categories = require('./routes/admin/categories');
-// const comments = require('./routes/admin/comments');
 
+const home = require('./routes/home/index');
+const admin = require('./routes/admin/index');
 
 // Use routes
+
 app.use('/', home);
-// app.use('/admin', admin);
-// app.use('/admin/posts', posts);
-// app.use('/admin/categories', categories);
-// app.use('/admin/comments', comments);
+app.use('/admin', admin);
+
+
+// setting up server end port number
 const port = process.env.PORT || 8000
 
 app.listen(port, () => {

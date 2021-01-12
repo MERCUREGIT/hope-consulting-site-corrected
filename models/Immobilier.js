@@ -6,7 +6,8 @@ const Immobilier = new Schema({
 
     offre: {
         type:Boolean,
-        default: true
+        default: true,
+        required:true
     },
     vendor_name: {
         type: String,
