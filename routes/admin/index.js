@@ -6,11 +6,10 @@ const Architecture = require('../../models/Architecture');
 const PlanEtDessin = require('../../models/PlanEtDessin');
 const fs = require('fs');
 const RealisationEtSuivi = require('../../models/RealisationEtSuivi');
-
-
+const dashboard_url = "https://hope-consulting-dashboard.netlify.app/";
 
 router.get('/', (req, res)=>{
-    res.redirect('https://hope-consulting-dashboard.netlify.app/')
+    res.redirect(dashboard_url)
 });
 
 router.get('/details/:id', (req, res) => {
@@ -38,7 +37,7 @@ router.post('/architectures', (req, res)=>{
         image: req.body.image,
         nom:req.body.nom
     }).save().then(()=>{
-        res.redirect('https://hope-consulting-dashboard.netlify.app/home');
+        res.redirect(dashboard_url);
     }).catch(err=>{
         
     })
@@ -49,7 +48,7 @@ router.post('/realisations', (req, res)=>{
         image: req.body.image,
         nom:req.body.nom
     }).save().then(()=>{
-        res.redirect('https://hope-consulting-dashboard.netlify.app/home');
+        res.redirect(dashboard_url);
     }).catch(err=>{
         
     })
@@ -60,13 +59,26 @@ router.post('/plans', (req, res)=>{
         image: req.body.image,
         nom:req.body.nom
     }).save().then(()=>{
-        res.redirect('https://hope-consulting-dashboard.netlify.app/home');
+        res.redirect(dashboard_url);
     }).catch(err=>{
         
     })
 });
 
 // ######################################################
+
+router.delete('/denyGroundOffer/:id', (req, res)=>{
+    Immobilier.findOne({_id: req.params.id }).then(immobilier=>{
+        fs.unlink(uploadDir + immobilier.file, err => {});
+        immobilier.remove();
+        res.redirect(dashboard_url);
+    });
+});
+
+
+router.post('/login',(req, res)=>{
+ 
+})
 
 
 // Unused for now
@@ -91,14 +103,6 @@ router.get('/plans-admin', (req, res)=>{
 
 
 
-
-router.delete('/denyGroundOffer/:id', (req, res)=>{
-    Immobilier.findOne({_id: req.params.id }).then(immobilier=>{
-        fs.unlink(uploadDir + immobilier.file, err => {});
-        immobilier.remove();
-        res.redirect("https://hope-consulting-dashboard.netlify.app/home");
-    });
-});
 
 
 module.exports = router;

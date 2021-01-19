@@ -68,7 +68,6 @@ const admin = require('./routes/admin/index');
 app.use('/', home);
 app.use('/admin', admin);
 
-
 // setting up server end port number
 const port = process.env.PORT || 8000
 
