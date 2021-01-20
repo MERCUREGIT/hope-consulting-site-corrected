@@ -40,7 +40,6 @@ app.use(session({
     secret: 'heckmack123',
     resave: true,
     saveUninitialized: true,
-
 }));
 
 app.use(flash());
