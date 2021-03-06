@@ -9,9 +9,6 @@ module.exports = {
             file.mv(dirUploads + fileName, err => {
                 if (err) throw err;
             });
-    
-    
-            console.log(req.files);
         }else {
             fileName = '';
         }
@@ -24,16 +21,16 @@ module.exports = {
             dbmodel.topic=req.body.object_contact;
             dbmodel.description= req.body.message_contact;
             dbmodel.image= fileName;
+            dbmodel.area= req.body.area;
+            dbmodel.Price = req.body.price;
+            dbmodel.house = req.body.house;
            }
            catch(err){
                console.log(err)
            }
-       
-    
-    
            dbmodel.save().then(()=>{
                console.log(req)
-               res.redirect("/offres-immobilier")
+               res.redirect(redirectPage)
     });
     }
 }
