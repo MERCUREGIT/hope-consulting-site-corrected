@@ -1,0 +1,78 @@
+{{>home/jumbotrons/offre-immobilier}}
+<main>
+	<div class="container margin-top-xs-5">
+		<div style="margin-top: 20px;" class="row">
+			<div class="col-xs-12 col-sm-9">
+				<div class="jumbotron">
+					<h1>Cree vos Offres</h1>
+					<p class="lead">
+					<ol class="breadcrumb">
+						<li><a href="/demandes-immobilier">offre</a></li>
+						<li><a href="/demandes-immobilier/{{search_term}}">#{{search_term}}</a></li>
+					</ol>
+					</p>
+					{{#if search_term}}
+					<p class="lead">
+						Resultat de recherche pour : "{{search_term}}"
+					</p>
+					{{/if}}
+					<div style="margin-top:10%" class="row">
+						<div class="col-lg-6">
+							<a type="submit" href="/offres-immobilier/create" class="btn btn-primary">Cree une offre</a>
+						</div>
+						<div class="col-lg-6">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search for..." id="searchField" />
+								<span class="input-group-btn">
+									<button onclick='handleChange("/offres-immobilier/")' class="btn btn-default"
+										type="button">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</button>
+								</span>
+							</div><!-- /input-group -->
+						</div><!-- /.col-lg-6 -->
+					</div>
+				</div>
+
+				<div id="searchDisplayElement">
+					{{#if immobilier.length}}
+					{{>home/cards/immobilier}}
+					{{else}}
+					<div class="alert alert-danger" role="alert">
+						Oups! Aucune offre disponible {{#if search_term}} pour "{{search_term}}" {{/if}}
+					</div>
+					{{/if}}
+				</div>
+
+			</div>
+			<div style="margin-top: 20vh;" class="col-xs-6 col-sm-3 mt-5 sidebar-offcanvas" id="sidebar">
+				<div class="list-group">
+					<a href="/offres-immobilier" class="list-group-item active">Offre</a>
+					<a href="/demandes-immobilier" class="list-group-item">Demande</a>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">Offre par region</div>
+					<div class="panel-body">
+						<p>Utilisez notre plateforme pour rechercher des lieux qui vous intéressent par région.</p>
+					</div>
+					<!-- List group -->
+					<ul class="list-group">
+						<li class="list-group-item"><a href="/offres-immobilier/"> <span
+									class="glyphicon glyphicon-th-large"></span> retour</a></li>
+						<li class="list-group-item"><a href="/offres-immobilier/Centre">Centre</a></li>
+
+
+						<li class="list-group-item"><a href="/offres-immobilier/L'Est">L'Est</a></li>
+						<li class="list-group-item"><a href="/offres-immobilier/Littoral">Littoral</a></li>
+						<li class="list-group-item"><a href="/offres-immobilier/Nord Ouest">Nord Ouest</a></li>
+						<li class="list-group-item"><a href="/offres-immobilier/Ouest">Ouest</a></li>
+						<li class="list-group-item"><a href="/offres-immobilier/Extreme Nord">Extreme Nord</a></li>
+						<li class="list-group-item"><a href="/offres-immobilier/Le Sud">Le Sud</a></li>
+						<li class="list-group-item"><a href="/offres-immobilier/Sud Ouest">Sud Ouest</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</main>

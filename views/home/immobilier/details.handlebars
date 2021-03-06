@@ -1,0 +1,62 @@
+{{#each immobilier}}
+<section class="parallax_window_in short" data-parallax="scroll" data-image-src="/uploads/{{image}}"
+	data-natural-width="1400" data-natural-height="400">
+	<div id="sub_content_in">
+		<div class="container">
+			<h1> {{#if offre}}
+				Offre Immobilier
+				{{else}}
+				Demande Immobilier
+				{{/if}}
+			</h1>
+			<p> Partagez votre offre et vos souhaits immobiliers avec des millions d'utilisateurs à travers le monde
+				grâce à notre plateforme </p>
+		</div>
+	</div>
+</section><!-- End section -->
+
+<main>
+	<div class="container margin_60_35">
+		<div class="row">
+			<div class="col-sm-12 col-md-6">
+				<a target="_blanc" href="/uploads/{{image}}"><img style="border-radius: 10px;" width="100%"
+						src="/uploads/{{image}}" alt=""></a>
+			</div>
+			<div class="col-sm-12 col-md-6">
+				<div class="bloglist singlepost">
+					<h2>{{topic}} </h2>
+					<div class="postmeta">
+						<ul>
+							<li>
+								<span>
+									<i class="icon_clock_alt"></i>
+									<bold>{{ generateTime date 'MMMM Do YYYY'}}</bold>
+								</span>
+							</li>
+							<li>Publier par: {{vendor_name}}</li>
+							<hr>
+							<li>Email : {{email}}</li>
+
+							<li>Situé a: <strong>{{loaction}}</strong></li>
+							<hr>
+							{{#if offre}}
+							<li>Prix : <strong>{{Price}} </strong> FCFA</li>
+							<li>superficie : <strong>{{area}}</strong> km²</li>
+							{{/if}}
+							<li>telephone : <strong>+237 697 18 18 57</strong></li>
+						</ul>
+					</div>
+					<div class="post-content">
+						<h3>
+							Description
+						</h3>
+						<br>
+						{{description}}
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{{/each}}

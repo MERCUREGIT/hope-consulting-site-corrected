@@ -1,0 +1,160 @@
+{{!-- {{>home/jumbotrons/demande-immobilier}} --}}
+<div style="margin-top: 8%;" class="container  w-75">
+    <div class="row">
+        <div class="jumbotron">
+            <h1>
+                Cree vos demande
+            </h1>
+            <p class="lead">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/demandes-immobilier">
+                        cree une demande
+                    </a>
+                </li>
+                <li>
+                    <a href="/demandes-immobilier/{{search_term}}">
+                        #
+                        {{search_term}}
+                    </a>
+                </li>
+            </ol>
+            Bienvenue. Nous sommes heureux que vous utilisiez notre plateforme pour rechercher et trouver
+            les propositions immobilières les plus optimales. Veuillez remplir ce formulaire avec les
+            spécifications de ce que vous voulez. Décrivez clairement ce que vous voulez en termes simples.
+            </p>
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <form method="POST" action="/demandes-immobilier" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>
+                                Nom & prenoms:
+                            </label>
+                            <input type="text" class="form-control styled" id="name_contact" name="name_contact"
+                                placeholder="Ets Entreprise" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>
+                                Numéro de téléphone:
+                            </label>
+                            <input type="tel" id="tel_contact" name="tel_contact" class="form-control styled"
+                                placeholder="xxxxxxxxx" required pattern="6[98257][0-9]{7}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="email_contact">
+                                votre adresse mail:
+                            </label>
+                            <input type="email" class="form-control styled" id="email_contact" name="email_contact"
+                                placeholder="adresse@email.com" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="ville_contact">
+                                Dans quelle region rechercher vous un terrain ?:
+                            </label>
+                            <select class="form-control" name="ville_contact" id="ville_contact" required>
+                                <option value="Centre">
+                                    Centre
+                                </option>
+                                <option value="Littoral">
+                                    Littoral
+                                </option>
+                                <option value="L'Est">
+                                    L'Est
+                                </option>
+                                <option value="Nord Ouest">
+                                    Nord Ouest
+                                </option>
+                                <option value="Ouest">
+                                    Ouest
+                                </option>
+                                <option value="Extreme Nord">
+                                    Extreme Nord
+                                </option>
+                                <option value="Le Sud">
+                                    Le Sud
+                                </option>
+                                <option value="Sud Ouest">
+                                    Sud Ouest
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="check" value="false" hidden name="house" />
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>
+                                Quel est la superficie du terrain que vous désirez:
+                            </label>
+                            <input type="number" id="area" name="area" class="form-control styled" placeholder="Yaounde"
+                                required />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="logo">
+                                Image du terrain ou de la maison
+                            </label>
+                            <input type="file" id="file_contact" name="file_contact" class="form-control styled"
+                                accept=".png, .jpeg, .jpg" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                Objet:
+                            </label>
+                            <input type="text" id="object_contact" name="object_contact" class="form-control styled"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                Description de la demande:
+                            </label>
+                            <textarea rows="5" id="message_contact" name="message_contact" class="form-control styled"
+                                style="height:100px;"
+                                placeholder="Donner une description brève du terrain ou de la maison que souhaiter acheter."
+                                required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <button type="submit" class="btn btn-primary" id="submit_ground">
+                                Envoyer
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div style="margin-top: 5%;" class="col-sm-12 col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." id="searchField" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" onclick="handleChange('/demandes-immobilier/')" type="button">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
