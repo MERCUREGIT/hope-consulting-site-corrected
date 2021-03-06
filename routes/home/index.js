@@ -8,6 +8,7 @@ const RealisationEtSuivi = require('../../models/RealisationEtSuivi');
 const {postHelper} = require('../../helpers/postHelper');
 const Candidature = require('../../models/Candidature');
 const { isEmpty, uploadDir } = require('../../helpers/upload-helper');
+const { filter } = require('compression');
 
 
 router.all('/*', (req, res, next) => {
@@ -51,30 +52,82 @@ router.get('/plans', (req, res) => {
 });
 
 
-//*****************get demande et offre immobilier ********/
+//*****************get demande immobilier ********/
 
 
 router.get('/offres-immobilier',(req, res)=>{
     Immobilier.find({offre:true}).then(immobilier => {
-        res.render('home/offres-immobilier', { immobilier: immobilier});
+        res.render('home/immobilier/offre/offres-immobilier', { immobilier: immobilier});
     });
 });
+
+router.get('/offres-immobilier/create',(req, res)=>{
+    Immobilier.find({offre:true}).then(immobilier => {
+        res.render('home/immobilier/offre/offres-immobilier-create', { immobilier: immobilier});
+    });
+});
+
+
+router.get('/offres-immobilier/:search_term', (req, res) => {
+    const search_term = req.params.search_term;
+    Immobilier.find({ offre: true }).then(immobilier => {
+        const search_result =  immobilier.filter((item) => {
+            return item.vendor_name.includes(search_term) || item.topic.includes(search_term) || item.description.includes(search_term) || item.loaction.includes(search_term);
+        })
+        res.render('home/immobilier/offre/offres-immobilier', { immobilier: search_result, search_term:search_term});
+    });
+});
+
+//*****************get offre immobilier ********/
+
 router.get('/demandes-immobilier',(req, res)=>{
     Immobilier.find({offre:false}).then(immobilier => {
-        res.render('home/offres-immobilier', { immobilier: immobilier});
+        res.render('home/immobilier/demande/demande-immobilier', { immobilier: immobilier});
+    });
+});
+router.get('/demandes-immobilier/create',(req, res)=>{
+    Immobilier.find({offre:false}).then(immobilier => {
+        res.render('home/immobilier/demande/demande-immobilier-create', { immobilier: immobilier });
     });
 });
 
+router.get('/demandes-immobilier/:search_term', (req, res) => {
+    const search_term = req.params.search_term;
 
+    Immobilier.find({ offre: false }).then(immobilier => {
+        console.log(immobilier)
+        const search_result = immobilier.lenght !=0 && immobilier.filter((item) => {
+            return item.vendor_name.includes(search_term) || item.topic.includes(search_term) || item.description.includes(search_term) || item.loaction.includes(search_term);
+        })
+        res.render('home/immobilier/demande/demande-immobilier', { immobilier: search_result , search_term:search_term});
+    });
+});
+
+router.get('/immobilier/details/:id', (req, res) => {
+    const id = req.params.id
+    Immobilier.find({ _id: id })
+        .then(immob => {
+            console.log(immob)
+            res.render('home/immobilier/details',{immobilier:immob})
+        })
+        .catch((err) => {
+        
+    })
+})
+
+router.get('/emploi/details/:id', (req, res) => {
+    const id = req.params.id
+    OffreEmploi.find({ _id: id })
+        .then(emploi => {
+            res.render('home/immobilier/details',{emploi})
+        })
+})
 
 
 /*****************post demande et offre immobilier ********/
 
 router.post('/groundOffers',  (req, res)=>{
-
-postHelper(req, res, Immobilier(),true,"/offres-immobilier");
-
-
+    postHelper(req, res, Immobilier(),true,"/offres-immobilier");
 });
 
 router.post('/demandes-immobilier',  (req, res)=>{
@@ -106,7 +159,7 @@ router.post('/candidatures', (req, res)=>{
 
 router.get('/offres-emploi', (req, res)=>{
     OffreEmploi.find({}).then(offers=>{
-        res.render('home/offres',{
+        res.render('home/emploi/offres',{
             offers:offers
         });
     });
