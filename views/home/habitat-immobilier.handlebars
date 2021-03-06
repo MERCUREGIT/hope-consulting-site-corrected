@@ -1,0 +1,162 @@
+	<section class="parallax_window_in short" data-parallax="scroll" data-image-src="img/pexels-sevenstorm-juhaszimrus-443383.jpg" data-natural-width="1400" data-natural-height="400">
+		<div id="sub_content_in">
+			<div class="container">
+				<h1>Offres de terrains</h1>
+				<p>Les entreprises ou les particuliers peuvent poster des offres de terrains ici</p>
+			</div>
+		</div>
+	</section><!-- End section -->
+	<main>
+	    <!-- Example row of columns -->
+    <div  class="container margin-top-xs-5">
+      <div style="margin-top: 20px;" class="row">
+      <div class="col-xs-12 col-sm-9">
+      <div class="jumbotron">
+        <h1>Poster vos demande</h1>
+        {{!-- <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p> --}}
+		<div class="row">
+        <div class="col-lg-6">
+			<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Poster une demande</button>
+		</div>
+			<div class="col-lg-6">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search for..." id="searchField">
+					<span class="input-group-btn">
+						<button class="btn btn-default" onclick='handleChange("/demandes-immobilier/")' type="button">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</span>
+				</div><!-- /input-group -->
+			</div><!-- /.col-lg-6 -->
+		</div>
+      </div>
+	
+		<style>
+			.cropped {
+				 /* width of container */
+				 width: 100%;
+				height: 200px !important; /* height of container */
+				object-fit: cover;
+				border: 0.5px solid rgba(0, 0, 0, 0.2);
+				border-radius: 5px;
+			}	
+		</style>
+
+		<div id="searchDisplayElement">
+	  		{{#each immobilier}}
+				<div class="col-sm-6 col-md-6">
+					<div class="thumbnail">
+						<a target="_blanc"  href="/uploads/{{image}}"><img class="cropped" height="80px" width="100%" src="/uploads/{{image}}" alt=""></a>
+					<div class="caption">
+						<h5>Publier par {{vendor_name}} | {{generateTime date    'MMMM Do YYYY'}}</h5>
+						<p class="text-danger">{{loaction}}  <strong>+237 697 18 18 57</strong> </p>
+						<p>{{description}}</p>
+						<p><a href="#" class="btn btn-primary" role="button">View details &raquo;</a></p>
+					</div>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+    </div>
+		<div style="margin-top: 20vh;" class="col-xs-6 col-sm-3 mt-5 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="/offres-immobilier" class="list-group-item">Offre</a>
+            <a href="/demandes-immobilier" class="list-group-item" >Demande</a>
+            <a href="/demandes-immobilier" class="list-group-item active" >Habitat</a>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div>
+
+
+    
+		<div class="py-20  container-fluid ">
+			<div class="row  mx-auto">
+				<br>	<!-- /article -->
+					<div class="col-md-8">
+					{{!-- <button type="submit" class="btn_1 col-sm-5" data-toggle="modal" data-target="#exampleModal">Poster une offre</button> --}}
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog-centered modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3 class="modal-title" id="exampleModalLabel">Demande de terrain</h3>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div>
+										<div id="message-contact"></div>
+										<form method="POST" action="/groundOffers" enctype="multipart/form-data">
+											<div class="row">
+												<div class="col-md-6 col-sm-6">
+													<div class="form-group">
+														<label>Nom du vendeur:</label>
+														<input type="text" class=" form-control styled" id="name_contact" name="name_contact" placeholder="Ets Entreprise" required>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-6">
+													<div class="form-group">
+														<label>Tel:</label>
+														<input type="tel" id="tel_contact" name="tel_contact" class="form-control styled" placeholder="xxxxxxxxx"  required pattern="6[98257][0-9]{7}">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 col-sm-6">
+													<div class="form-group">
+														<label>Email:</label>
+														<input type="email" class="form-control styled" id="email_contact" name="email_contact" placeholder="adresse@email.com" required>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-6">
+													<div class="form-group">
+														<label>ville:</label>
+														<input type="text" id="ville_contact" name="ville_contact" class="form-control styled" placeholder="Yaounde" required>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="logo">Image du terrain</label>
+														<input type="file" id="file_contact" name="file_contact" class="form-control styled" accept=".png, .jpeg, .jpg" required>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label>Objet:</label>
+														<input type="text" id="object_contact" name="object_contact" class="form-control styled" required>
+													</div>
+												</div>
+											</div> 
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label>Contenu de la vente:</label>
+														<textarea rows="5" id="message_contact" name="message_contact" class="form-control styled" style="height:100px;" placeholder="Contenu" required></textarea>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<p><button type="submit" class="btn btn-primary" id="submit_ground">Envoyer</button></p>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						  </div>
+						</div>
+					</div>
+					<!-- /pagination -->
+				</div>
+				<!-- /col -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+    </main><!--/main-->
+    
