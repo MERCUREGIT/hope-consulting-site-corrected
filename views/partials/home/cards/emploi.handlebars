@@ -1,0 +1,31 @@
+<div class="list-group">
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">{{entreprise}}</h4>
+                <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
+                    excepturi voluptatum aliquam deleniti molestias recusandae, dolore ea nulla? Mollitia, porro?</p>
+            </a>
+
+            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+            <button type="button" class="list-group-item">Morbi leo risus</button>
+            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
+            <button type="button" class="list-group-item">Vestibulum at eros</button>
+        </div>
+    </div>
+</div>
+
+
+entreprise: {type: String,required: true,},
+site_web:{type: String,},
+email: {type: String,},
+phone_number: {type: String,required: true,},
+category: {type: String,required: true},
+type: {type:String, required:true},
+poste: { type: String, required: true },
+date_expiration:{type: Date, required:true},
+location: {type:String, required:true},
+date: {type: Date,default: Date.now()},
+description:{type:String,required: true,
+},

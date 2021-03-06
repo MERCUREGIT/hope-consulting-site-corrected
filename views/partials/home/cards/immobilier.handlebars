@@ -1,0 +1,25 @@
+{{#each immobilier}}
+<article class="article">
+	<div class="col-sm-6 col-md-6">
+		<div class="thumbnail">
+			<a target="_blanc" href="/uploads/{{image}}"><img class="cropped" height="80px" width="100%"
+					src="/uploads/{{image}}" alt=""></a>
+			<div class="caption">
+				<h5>Publier par {{vendor_name}} | {{generateTime date 'MMMM Do YYYY'}}</h5>
+				<p class="text-danger">{{loaction}} <strong>+237 697 18 18 57</strong> </p>
+				<p>
+				<ul>
+					{{#if offre}}
+					{{!-- <li>Prix : <strong>{{price}}</strong></li> --}}
+					<li>superficie : <strong>{{area}}</strong> km²</li>
+					{{/if}}
+				</ul>
+				</p>
+				<p style="height: 100%; overflow:hidden">{{shortenText description 100}}...</p>
+				<p><a href="/immobilier/details/{{_id}}" class="btn btn-primary" role="button">Voir les détails
+						&raquo;</a></p>
+			</div>
+		</div>
+	</div>
+</article>
+{{/each}}
