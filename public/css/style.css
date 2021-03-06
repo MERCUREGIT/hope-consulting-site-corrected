@@ -432,7 +432,7 @@ header {
 	animation-name: swingInX;
 }
 
-@-webkit-keyframes swingOutX {
+@keyframes swingOutX {
 	0% {
 		-webkit-transform: perspective(400px) rotateX(0deg);
 	}
@@ -443,6 +443,7 @@ header {
 
 .animated.swingOutX {
 	-webkit-transform-origin: top;
+	transform-origin: top;
 	-webkit-animation-name: swingOutX;
 	-webkit-backface-visibility: visible !important;
 	-moz-animation-name: swingOutX;
@@ -453,7 +454,7 @@ header {
 	backface-visibility: visible !important;
 }
 
-@-webkit-keyframes slideDown {
+@keyframes slideDown {
 	0% {
 		-webkit-transform: translateY(-100%);
 		-moz-transform: translateY(-100%);
@@ -477,7 +478,7 @@ header {
 	animation-name: slideDown;
 }
 
-@-webkit-keyframes slideUp {
+@keyframes slideUp {
 	0% {
 		-webkit-transform: translateY(0);
 		-moz-transform: translateY(0);
@@ -930,7 +931,7 @@ main {
 	width: 1px;
 	height: 105%;
 	background-color: #ededed;
-	display: inline-block;
+	/* display: inline-block; */
 	float: right;
 	top: -10px;
 	position: absolute;
@@ -2441,6 +2442,7 @@ ul.contacts_info li:last-child {
 .owl-carousel .owl-stage {
 	position: relative;
 	-ms-touch-action: pan-Y;
+	touch-action: pan-Y;
 }
 
 .owl-carousel .owl-stage:after {
@@ -2456,6 +2458,7 @@ ul.contacts_info li:last-child {
 	position: relative;
 	overflow: hidden;
 	-webkit-transform: translate3d(0px, 0px, 0px);
+	transform: translate3d(0px, 0px, 0px);
 }
 
 .owl-carousel .owl-item {
@@ -2463,6 +2466,7 @@ ul.contacts_info li:last-child {
 	min-height: 1px;
 	float: left;
 	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
 }
@@ -2471,6 +2475,7 @@ ul.contacts_info li:last-child {
 	display: block;
 	width: 100%;
 	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 
 .owl-carousel .owl-nav.disabled,
@@ -2600,6 +2605,7 @@ ul.contacts_info li:last-child {
 	background: url("owl.video.play.png") no-repeat;
 	cursor: pointer;
 	z-index: 1;
+	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	transition: -webkit-transform 100ms ease;
 	transition: transform 100ms ease;
@@ -2682,6 +2688,7 @@ ul.contacts_info li:last-child {
 	background: #D6D6D6;
 	display: block;
 	-webkit-backface-visibility: visible;
+	backface-visibility: visible;
 	transition: opacity 200ms ease;
 	border-radius: 30px;
 }
@@ -2693,7 +2700,9 @@ ul.contacts_info li:last-child {
 
 .owl-item {
 	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 	-webkit-transform: translateZ(0) scale(1.0, 1.0);
+	transform: translateZ(0) scale(1.0, 1.0);
 }
 
 /*-------- 3.7 List --------*/
@@ -3703,4 +3712,135 @@ form#register-form {
 	p.lead.styled.center {
     	padding: 0 15px!important;
 	}
+}
+
+
+footer>h2{
+	text-align:center;
+	padding: 20px;
+  }
+  /* Slider */
+  
+  .slick-slide {
+	  margin: 0px 20px;
+  }
+  
+  .slick-slide img {
+	  width: 100%;
+  }
+  
+  .slick-slider
+  {
+	  position: relative;
+	  display: block;
+	  box-sizing: border-box;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+			  user-select: none;
+	  -webkit-touch-callout: none;
+	  -khtml-user-select: none;
+	  -ms-touch-action: pan-y;
+		  touch-action: pan-y;
+	  -webkit-tap-highlight-color: transparent;
+  }
+  
+  .slick-list
+  {
+	  position: relative;
+	  display: block;
+	  overflow: hidden;
+	  margin: 0;
+	  padding: 0;
+  }
+  .slick-list:focus
+  {
+	  outline: none;
+  }
+  .slick-list.dragging
+  {
+	  cursor: pointer;
+	  cursor: hand;
+  }
+  
+  .slick-slider .slick-track,
+  .slick-slider .slick-list
+  {
+	  -webkit-transform: translate3d(0, 0, 0);
+		 -moz-transform: translate3d(0, 0, 0);
+		  -ms-transform: translate3d(0, 0, 0);
+		   -o-transform: translate3d(0, 0, 0);
+			  transform: translate3d(0, 0, 0);
+  }
+  
+  .slick-track
+  {
+	  position: relative;
+	  top: 0;
+	  left: 0;
+	  display: block;
+  }
+  .slick-track:before,
+  .slick-track:after
+  {
+	  display: table;
+	  content: '';
+  }
+  .slick-track:after
+  {
+	  clear: both;
+  }
+  .slick-loading .slick-track
+  {
+	  visibility: hidden;
+  }
+  
+  .slick-slide
+  {
+	  display: none;
+	  float: left;
+	  height: 100%;
+	  min-height: 1px;
+  }
+  [dir='rtl'] .slick-slide
+  {
+	  float: right;
+  }
+  .slick-slide img
+  {
+	  display: block;
+  }
+  .slick-slide.slick-loading img
+  {
+	  display: none;
+  }
+  .slick-slide.dragging img
+  {
+	  pointer-events: none;
+  }
+  .slick-initialized .slick-slide
+  {
+	  display: block;
+  }
+  .slick-loading .slick-slide
+  {
+	  visibility: hidden;
+  }
+  .slick-vertical .slick-slide
+  {
+	  display: block;
+	  height: auto;
+	  border: 1px solid transparent;
+  }
+  .slick-arrow.slick-hidden {
+	  display: none;
+  }
+
+  .cropped {
+	/* width of container */
+	width: 100%;
+   height: 200px !important; /* height of container */
+   object-fit: cover;
+   border: 0.5px solid rgba(0, 0, 0, 0.2);
+   border-radius: 5px;
 }
