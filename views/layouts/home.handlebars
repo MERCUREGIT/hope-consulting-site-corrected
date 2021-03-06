@@ -5,37 +5,36 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Hope Consulting">
+	<meta name="description"
+		content="Hope Consulting, Nous offrons des services de qualité avant, pendant, et après vente. L'accompagnement et la garanti des services pour tous en tenant compte du porte feuille du client, est notre priorité.,Les clients peuvent venir chez nous en toute confiance. Notre politique de fidélisation du client basée sur la proximité et la confiance, le prix concurrentiel, négociable, définissent notre expertise et professionnalisme ">
+	<meta name="keywords"
+		content="Hope Consulting www.hope-consulting-cm.com, placements intérimaires,réalisations,offres immobilières,emploi, architecture, construction, meilleurs immobiliers, fidélisation du client, travaillons ensemble">
 	<title>Hope Consulting</title>
 	<link rel="icon" href="/img/logo.jpg">
-	{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
+
+
 	<!-- GOOGLE WEB FONT-->
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300,400,700" rel="stylesheet">
 
 	<!-- BASE CSS -->
-	<link href="css/animate.min.css" rel="stylesheet">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
+	<link href="/css/animate.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
 
 	<!-- YOUR CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
-	
-	<!-- LayerSlider stylesheet -->
+	<link href="css/loader.css" rel="stylesheet">
 	<link href="layerslider/css/layerslider.css" rel="stylesheet">
 
 </head>
 
 <body>
-
-{{>home/header}}
-	<div id="preloader">
-		<div data-loader="circle-side"></div>
-	</div><!-- /Preload -->
+	{{>home/header}}
 	<div class="layer"></div>
+	{{{body}}}
+	{{>home/footer}}
+</body>
 
-    {{{body}}}
-
-{{>home/footer}}
-   
 </html>
