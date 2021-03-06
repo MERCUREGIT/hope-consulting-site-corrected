@@ -4,36 +4,18 @@ const Schema = mongoose.Schema;
 
 const OffreEmploiSchema = new Schema({
 
-    vendor_name: {
-        type: String,
-        required: true,
+    entreprise: {type: String,required: true,},
+    site_web:{type: String,},
+    email: {type: String,},
+    phone_number: {type: String,required: true,},
+    category: {type: String,required: true},
+    type: {type:String, required:true},
+    poste: { type: String, required: true },
+    date_expiration:{type: Date, required:true},
+    location: {type:String, required:true},
+    date: {type: Date,default: Date.now()},
+    description:{type:String,required: true,
     },
-    email: {
-        type: String,
-    },
-    phone_number: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String
-    },
-    date: {
-        type: Date,
-        default: Date.now()
-    },
-    topic:{
-        type:String,
-        required: true,
-    },
-    description:{
-        type:String,
-        required: true,
-    },
-    loaction:{
-        type:String,
-        required: true,
-    }
 
 });
 
