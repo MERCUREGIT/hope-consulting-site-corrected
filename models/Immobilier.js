@@ -43,6 +43,19 @@ const Immobilier = new Schema({
     loaction:{
         type:String,
         required: true,
+    },
+    area: {
+        type:Number,
+        required: true,
+    },
+    Price: {
+        type:Number,
+        required: false,
+    },
+    house: {
+        type: Boolean,
+        required: true,
+        default:false
     }
 
 }, { usePusEach: true });
