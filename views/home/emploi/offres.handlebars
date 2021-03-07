@@ -3,7 +3,9 @@
 	<div id="sub_content_in">
 		<div class="container">
 			<h1>Offres d'emploi</h1>
-			<p>Les entreprises peuvent poster ici leurs offres d'emploi</p>
+			<p>Les entreprises peuvent poster ici leurs offres d'emploi <a class="btn btn-primary"
+					href="/emploi/offre/create">Cree un offre d'emploi</a></p>
+
 		</div>
 	</div>
 </section><!-- End section -->
@@ -11,11 +13,7 @@
 <main>
 	<div class="container margin_60_35">
 		<div class="row">
-
-			{{!-- {{#each offers}} --}}
 			{{>home/cards/emploi}}
-			{{!-- {{/each}} --}}
-
 		</div>
 	</div>
 </main>

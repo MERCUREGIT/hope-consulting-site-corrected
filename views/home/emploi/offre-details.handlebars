@@ -1,0 +1,102 @@
+{{#each emploi}}
+<section class="parallax_window_in short" data-parallax="scroll" data-image-src="/uploads/{{image}}"
+	data-natural-width="1400" data-natural-height="400">
+	<div id="sub_content_in">
+		<div class="container">
+			<h1> {{#if entreprise}}
+				Offre Emplois
+				{{else}}
+				Candidats prêts pour l'emploi
+				{{/if}}
+			</h1>
+			<p>Nous sommes très heureux que vous utilisiez notre plateforme pour publier des offres d'emploi avec notre
+				communauté en ligne. Chez Hope-Consulting, nous vous fournissons le bon réseau nécessaire pour obtenir
+				les experts dans des domaines variés</p>
+		</div>
+	</div>
+</section><!-- End section -->
+
+
+<main>
+	<div class="container margin_60_35">
+		<div class="row">
+			<div class="col-sm-12 col-md-8">
+				<div class="bloglist singlepost">
+					<span>
+						<h2>Offre d'emploi par <strong>{{entreprise}}</strong> </h2> Publier le
+						<strong>{{ generateTime date 'MMMM Do YYYY'}}</strong>
+					</span>
+					<hr>
+					<div class="postmeta">
+						<ul>
+							<h3>Information sur l'offre</h3>
+							<li>Delais de dépôt de candidature :
+								<strong>
+									{{ generateTime date_expiration 'MMMM Do YYYY'}}
+								</strong>
+							</li>
+
+							<li>nombre d'année d'expérience requise :
+								<strong>
+									{{#if experience}}
+									{{ experience}}
+									{{else}}
+									Non specifier
+									{{/if}}
+								</strong>
+							</li>
+
+							<li>Poste disponible pour l'offre :
+								<strong>
+									{{ poste}}
+								</strong>
+							</li>
+							<li>Lieu de travail pour l'offre :
+								<strong>
+									{{ location}}
+								</strong>
+							</li>
+							<hr>
+							<h3>Contacter {{entreprise}}</h3>
+							<li>Email : {{email}}</li>
+							<li>Telephone : {{phone_number}}</li>
+							<li>Situé à : {{location}}</li>
+						</ul>
+						<hr>
+					</div>
+					<div class="post-content">
+						<h3>
+							Description de l'offre
+						</h3>
+						<br>
+						{{description}}
+						<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12 col-md-4">
+				<div class="jumbotron">
+					<h3>
+						Offre {{entreprise}}
+					</h3>
+					<p class="lead">
+					<ol class="breadcrumb">
+						<li>
+							<a href="/offres-emploi">
+								offres
+							</a>
+						</li>
+						<li>
+							<a href="/emploi/details/{{_id}}">
+								{{poste}} /
+							</a>
+						</li>
+					</ol>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{{/each}}

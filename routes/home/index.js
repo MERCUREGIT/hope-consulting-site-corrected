@@ -5,7 +5,7 @@ const Architecture = require('../../models/Architecture');
 const PlanEtDessin = require('../../models/PlanEtDessin');
 const OffreEmploi = require('../../models/OffreEmploi');
 const RealisationEtSuivi = require('../../models/RealisationEtSuivi');
-const {postHelper} = require('../../helpers/postHelper');
+const {postHelper, employmentOffer } = require('../../helpers/postHelper');
 const Candidature = require('../../models/Candidature');
 const { isEmpty, uploadDir } = require('../../helpers/upload-helper');
 const { filter } = require('compression');
@@ -115,14 +115,6 @@ router.get('/immobilier/details/:id', (req, res) => {
     })
 })
 
-router.get('/emploi/details/:id', (req, res) => {
-    const id = req.params.id
-    OffreEmploi.find({ _id: id })
-        .then(emploi => {
-            res.render('home/immobilier/details',{emploi})
-        })
-})
-
 
 /*****************post demande et offre immobilier ********/
 
@@ -137,11 +129,59 @@ router.post('/demandes-immobilier',  (req, res)=>{
 
 
 
-/************************Emplois Post *************************/
+/************************Emplois offre get post *************************/
 
-router.post('/employmentOffers',  (req, res)=>{
-    postHelper(req, res, OffreEmploi(),true,"/offres-emploi");
+
+router.get('/emploi/details/:id', (req, res) => {
+    const id = req.params.id
+    OffreEmploi.find({ _id: id })
+        .then(emploi => {
+            OffreEmploi.find({ category: emploi[0].category })
+                .then(related => {
+                    res.render('home/emploi/offre-details', { emploi, related:related.slice(4) });
+            })
+        });
 });
+
+router.get('/offres-emploi', (req, res)=>{
+    OffreEmploi.find({}).then(offers=>{
+        res.render('home/emploi/offres',{
+            offers:offers
+        });
+    });
+});
+
+router.get('/offres-emploi/:search_term', (req, res) => {
+    const search_term = req.params.search_term;
+    console.log(search_term)
+
+    OffreEmploi.find().then(emploi => {
+        const search_result =  emploi.lenght != 0 && emploi.filter((item) => {
+                return item.description.includes(search_term) ||  item.type.includes(search_term) || item.category.includes(search_term) || item.entreprise.includes(search_term) || item.Poste.includes(search_term) || item.experience.includes(search_term) || item.location.includes(search_term)
+        });
+        console.log(search_result)
+        res.render('home/emploi/offres', { offers: search_result , search_term:search_term});
+    }).catch(err => {
+        res.render('home/emploi/offres', { offers: false , search_term:search_term});
+    });
+});
+
+router.get('/emploi/offre/create', (req, res)=>{
+    OffreEmploi.find({}).then(offers=>{
+        res.render('home/emploi/offre-create',{
+            offers:offers
+        });
+    });
+});
+
+router.post('/emploi/offre/create', (req, res) => {
+    console.log("ran");
+    console.log(req.body)
+    employmentOffer(req, res, OffreEmploi(),true,"/offres-emploi");
+});
+
+
+/************************Candidature get *************************/
 
 router.post('/candidatures', (req, res)=>{
     Candidature({
@@ -155,30 +195,27 @@ router.post('/candidatures', (req, res)=>{
 })
 
 
-/************************Emplois get *************************/
-
-router.get('/offres-emploi', (req, res)=>{
-    OffreEmploi.find({}).then(offers=>{
-        res.render('home/emploi/offres',{
-            offers:offers
-        });
-    });
-});
 
 router.get('/candidatures', (req, res)=>{
      Candidature.find({}).then(candidates=>{
-         res.render('home/candidatures',{
+         res.render('home/emploi/candidatures',{
             candidates:candidates
          });
      });
 });
 
+router.get('/candidat-emploi/:search_term', (req, res) => {
+    const search_term = req.params.search_term;
 
-router.get("/test",(req,res)=>{
-    Candidature.find({}).then(docc=>{
-        res.json(docc);
-    })
-})
+    Immobilier.find({ offre: false }).then(immobilier => {
+        console.log(immobilier)
+        const search_result = immobilier.lenght !=0 && immobilier.filter((item) => {
+            return item.vendor_name.includes(search_term) || item.topic.includes(search_term) || item.description.includes(search_term) || item.loaction.includes(search_term);
+        })
+        res.render('home/immobilier/demande/demande-immobilier', { immobilier: search_result , search_term:search_term});
+    });
+});
+
 
 
 module.exports = router;

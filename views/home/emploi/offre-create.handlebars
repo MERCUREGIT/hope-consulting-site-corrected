@@ -1,0 +1,237 @@
+{{!-- {{>home/jumbotrons/demande-immobilier}} --}}
+<div style="margin-top: 8%;" class="container  w-75">
+    <div class="row">
+        <div class="jumbotron">
+            <h1>
+                Cree vos offres-immobilier
+            </h1>
+            <p class="lead">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/demandes-immobilier">
+                        cree une offre-immobilier
+                    </a>
+                </li>
+                <li>
+                    <a href="/demandes-immobilier/{{search_term}}">
+                        #
+                        {{search_term}}
+                    </a>
+                </li>
+            </ol>
+            Bienvenue. Nous sommes heureux que vous utilisiez notre plateforme pour publier vos offre immobilier.
+            Veuillez remplir ce formulaire avec les
+            spécifications de ce que vous voulez. Décrivez clairement ce que vous voulez en termes simples.
+            </p>
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <form method="POST" action="/emploi/offre/create" enctype="multipart/form-data">
+                <h2>Informations sur le poste</h2>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>
+                                Category:
+                            </label>
+                            <select class="form-control" name="category" id="Category" required>
+                                <optgroup label="BATIMENT">
+                                    <option value="ARHITECTURE">ARHITECTURE</option>
+                                    <option value="IMAGENIERIE">IMAGENIERIE</option>
+                                    <option value="TECHNICIENS">TECHNICIENS</option>
+                                    <option value="CONDUCTEUR  DE TRAVAUX">CONDUCTEUR DE TRAVAUX</option>
+                                </optgroup>
+                                <optgroup label="SECURITE ET GARDINAGE">
+                                    <option value="AGENT DE SECURITÉ">AGENT DE SECURITÉ</option>
+                                    <option value="COMATEURS">COMATEURS</option>
+                                    <option value="SECURITE INCENDIE">SECURITE INCENDIE</option>
+                                    <option value="DRESSEURS">DRESSEURS</option>
+                                </optgroup>
+                                <optgroup label="COMMUNICATION ET MARKETING">
+                                    <option value="COMMUNICATEURS">COMMUNICATEURS</option>
+                                    <option value="COMMUNITY MANAGER">COMMUNITY MANAGER</option>
+                                    <option value="JOURNALISME">JOURNALISME</option>
+                                    <option value="ARCHIVISME">ARCHIVISME</option>
+                                    <option value="TRADUCTEUR">TRADUCTEUR</option>
+                                </optgroup>
+                                <optgroup label="COMPTABILITE ET FISCALITE">
+                                    <option value="COMPTABILTÉ">COMPTABILTÉ</option>
+                                    <option value="FISCALITÉ">FISCALITÉ</option>
+                                    <option value="AUDITEURS">AUDITEURS</option>
+                                    <option value="GESTION DE STOCK ">GESTION DE STOCK </option>
+                                </optgroup>
+                                </option>
+                                <option value="FINANCE">
+                                    FINANCE
+                                </option>
+                                <optgroup label="EVENEMENTIEL">
+                                    <option value="HOTESSE">HOTESSE</option>
+                                    <option value="RAYONNISTE">RAYONNISTE</option>
+                                    <option value="COMMERCIAUX">COMMERCIAUX</option>
+                                    <option value="FEMME/HOMMEDE SALLE">FEMME/HOMMEDE SALLE</option>
+                                </optgroup>
+                                <optgroup label="RESTAURANTS ET SERVICES">
+                                    <option value="CUISINIER / CUSINIÉRE">CUISINIER / CUSINIÉRE</option>
+                                    <option value="SERVEURS">SERVEURS</option>
+                                    <option value="BARMANS">BARMANS</option>
+                                    <option value="MENAGÉRE">MENAGÉRE</option>
+                                    <option value="CASIERE">CASIERE</option>
+                                    <option value="CHAUFFEURS">CHAUFFEURS</option>
+                                </optgroup>
+                                <optgroup label="TRANSFOMATION">
+                                    <option value="DEVELOPPEUR">DEVELOPPEUR</option>
+                                </optgroup>
+                                <option value="SECRETAIRE ET ADMINISTRATION">
+                                    SECRETAIRE ET ADMINISTRATION
+                                </option>
+                                <option value="JURIDIQUE ET CONSEIL">
+                                    JURIDIQUE ET CONSEIL
+                                </option>
+                                <optgroup label="COMMERCE">
+                                    <option value="VENDEUR">VENDEUR</option>
+                                </optgroup>
+                                <option value="AGENTS DE COMPTOIRE">
+                                    AGENTS DE COMPTOIRE
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="type">
+                                Type:
+                            </label>
+                            <select name="type" class="form-control" id="type">
+                                <option value="CDI">
+                                    CDI
+                                </option>
+                                <option value="CDI">
+                                    CDD
+                                </option>
+                                <option value="Stage">
+                                    Stage
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="type">
+                                Date d'expiration:
+                            </label>
+                            <input type="date" name="date_expiration" class="form-control" id="date_expiration">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="poste">
+                                Nom du Poste:
+                            </label>
+                            <input type="text" class="form-control styled" id="poste" name="poste"
+                                placeholder="Directeur RH" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="location">
+                                Dans quelle region (Lieu)?:
+                            </label>
+                            <select class="form-control" name="location" id="location" required>
+                                <option value="Centre">
+                                    Centre
+                                </option>
+                                <option value="Littoral">
+                                    Littoral
+                                </option>
+                                <option value="L'Est">
+                                    L'Est
+                                </option>
+                                <option value="Nord Ouest">
+                                    Nord Ouest
+                                </option>
+                                <option value="Ouest">
+                                    Ouest
+                                </option>
+                                <option value="Extreme Nord">
+                                    Extreme Nord
+                                </option>
+                                <option value="Le Sud">
+                                    Le Sud
+                                </option>
+                                <option value="Sud Ouest">
+                                    Sud Ouest
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>
+                                Description de l'offre:
+                            </label>
+                            <textarea rows="5" id="description" name="description" class="form-control styled"
+                                style="height:100px;" placeholder="Donner une description de  l'offre."
+                                required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <h2>Entrez les informations de l'entreprise</h2>
+                <hr>
+                <div class="row">
+                    <div class=" col-sm-12">
+                        <div class="form-group">
+                            <label for="site_web">
+                                Nom de lentreprise:
+                            </label>
+                            <input type="text" id="entreprise" name="entreprise" class="form-control styled" required />
+                        </div>
+                    </div>
+                    <div class=" col-sm-12">
+                        <div class="form-group">
+                            <label for="site_web">
+                                Site web de lentreprise:
+                            </label>
+                            <input type="text" id="site_web" name="site_web" class="form-control styled" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="email">
+                                votre adresse mail:
+                            </label>
+                            <input type="email" class="form-control styled" id="email" name="email"
+                                placeholder="adresse@email.com" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>
+                                Numéro de téléphone:
+                            </label>
+                            <input type="tel" id="phone_number" name="phone_number" class="form-control styled"
+                                placeholder="xxxxxxxxx" required pattern="6[98257][0-9]{7}" />
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <button type="submit" class="btn btn-primary" id="submit_ground">
+                        Post
+                    </button>
+                </p>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>

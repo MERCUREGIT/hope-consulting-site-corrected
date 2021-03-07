@@ -1,31 +1,37 @@
-<div class="list-group">
-    <div class="row">
-        <div class="col-sm-12 col-md-8">
+{{#each offers}}
+{{#if isPublic}}
+<div class="row"
+    style="border: 0.5px solid rgba(13, 255, 0, 0.481);  background-color:white; border-radius:5px; padding:5px">
+    <div style="border-right:0.5px solid rgba(0, 102, 255, 0.481) ;" class="col-sm-10 col-md-7">
+        <h4> <strong class="list-group-item-heading">{{entreprise}} {{#if experience}} avec {{experience}} requis
+                {{/if}}</strong>
+            recrute au poste de <a href="/"><i> {{poste}}</i></a> jusqau <strong>{{generateTime date_expiration
+                'MMMM Do
+                YYYY'}}</strong></h4>
 
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">{{entreprise}}</h4>
-                <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
-                    excepturi voluptatum aliquam deleniti molestias recusandae, dolore ea nulla? Mollitia, porro?</p>
-            </a>
-
-            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-            <button type="button" class="list-group-item">Morbi leo risus</button>
-            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-            <button type="button" class="list-group-item">Vestibulum at eros</button>
+        <div style="padding-left: 10px;">
+            <h4>Description</h4>
+            <p>
+                {{ shortenText description 150}}... <a href="/emploi/details/{{_id}}"> Lire la suite </a>
+            </p>
+            <small>
+                Publier le {{ generateTime date
+                'MMMM Do
+                YYYY'}} par <a href="http://{{site_web}}">{{entreprise}}</a>
+            </small>
         </div>
     </div>
+    <div class="col-sm-2 col-md-5">
+        <ul>
+            <li> Type : <a href="/emploi/{{type}}"><strong>{{type}}</strong> </a></li>
+            <li>Conatct : {{ phone_number}} </li>
+            <li>Category : {{ category}} </li>
+            <li>Email : {{ email}} </li>
+            <li>Lieu :{{location}}</li>
+            <li>Web : {{ site_web}} </li>
+
+        </ul>
+    </div>
 </div>
-
-
-entreprise: {type: String,required: true,},
-site_web:{type: String,},
-email: {type: String,},
-phone_number: {type: String,required: true,},
-category: {type: String,required: true},
-type: {type:String, required:true},
-poste: { type: String, required: true },
-date_expiration:{type: Date, required:true},
-location: {type:String, required:true},
-date: {type: Date,default: Date.now()},
-description:{type:String,required: true,
-},
+{{/if}}
+{{/each}}
