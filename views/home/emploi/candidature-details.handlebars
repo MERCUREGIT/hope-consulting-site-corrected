@@ -1,0 +1,91 @@
+{{#each candidate}}
+<section class="parallax_window_in short" data-parallax="scroll"
+    data-image-src="https://content.linkedin.com/content/dam/business/talent-solutions/global/en_us/blog/2019/04/8-clues-candidate-will-be-exceptional-candidate-01.jpg"
+    data-natural-width="1400">
+    <div id="sub_content_in">
+        <div class="container">
+            <h1> {{#if entreprise}}
+                Offre Emplois
+                {{else}}
+                Information de {{nom}}
+                {{/if}}
+            </h1>
+            <p>{{nom}} : Au cas où vous trouveriez mon CV intéressant, veuillez me contacter au +237 {{phone_number}}
+            </p>
+        </div>
+    </div>
+</section><!-- End section -->
+
+
+<main>
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-sm-12 col-md-8">
+                <div class="bloglist singlepost">
+                    <span>
+                        <h2>Pourquoi <strong>{{nom}}</strong> pense qu'il / elle convient à votre équipe </h2> Publier
+                        le
+                        <strong>{{ generateTime date 'MMMM Do YYYY'}}</strong>
+                    </span>
+                    <div class="postmeta">
+                        <hr>
+                        {{description}}
+                        <hr>
+                    </div>
+                </div>
+                <h3>Curriculum vitae de "<strong>{{nom}}</strong> " </h3>
+                <embed src="/cv/{{cv}}" type="application/pdf" width="100%" height="1240" />
+                <noembed>
+                    <h1>Alternative content</h1>
+                </noembed>
+                </embed>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <div style="padding: 10px;" class="jumbotron">
+                    <h3>
+                        Candidat <strong> {{nom}}</strong>
+                    </h3>
+                    <p class="lead">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/candidatures">
+                                Candidatures
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/candidatures/{{_id}}">
+                                {{nom}}
+                            </a>
+                        </li>
+                    </ol>
+                    </p>
+                    <ul>
+                        <h3>Information sur le candidat</h3>
+                        <li>Specialisation: <strong>{{category}}</strong> </li>
+                        <li>Année d'expérience :
+                            <strong>
+                                {{#if experience}}
+                                {{ experience}}
+                                {{else}}
+                                Non specifier
+                                {{/if}}
+                            </strong>
+                        </li>
+
+                        <hr>
+                        <h3>Contacter <i style="color: rgb(0, 89, 255);">{{nom}}</i></h3>
+                        <li>Email : {{email}}</li>
+                        <li>Telephone : {{phone_number}}</li>
+                        <li>Habit au :
+                            <strong>
+                                {{ location}}
+                            </strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{{/each}}
