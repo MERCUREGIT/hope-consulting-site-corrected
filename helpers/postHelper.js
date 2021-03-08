@@ -48,6 +48,7 @@ module.exports = {
                 dbmodelInstance.date_expiration = req.body.date_expiration;
                 dbmodelInstance.location = req.body.location;
                 dbmodelInstance.description = req.body.description;
+                dbmodelInstance.experience = req.body.experience;
                }
                catch(err){
                    console.log(err)
