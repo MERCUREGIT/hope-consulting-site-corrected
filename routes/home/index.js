@@ -175,24 +175,40 @@ router.get('/emploi/offre/create', (req, res)=>{
 });
 
 router.post('/emploi/offre/create', (req, res) => {
-    console.log("ran");
-    console.log(req.body)
     employmentOffer(req, res, OffreEmploi(),true,"/offres-emploi");
 });
 
 
 /************************Candidature get *************************/
 
-router.post('/candidatures', (req, res)=>{
+router.post('/candidatures', (req, res) => {
+    let fileName = "";
+    if(req.files){
+        console.log(req.files.cv)
+        let file = req.files.cv;
+        fileName = Date.now() + '-' + file.name;
+        let dirUploads = './public/uploads';
+        file.mv(dirUploads + fileName, err => {
+            if (err) throw err;
+        });
+    }else {
+        fileName = '';
+    }
     Candidature({
-        nom:req.body.name_contact,
-        telephone:req.body.tel_contact,
-        email:req.body.email_contact,
-        desciption:req.body.message_contact
-    }).save().then(()=>{
+        nom: req.body.name,
+        phone_number: req.body.phone_number,
+        email: req.body.email,
+        description: req.body.description,
+        location: req.body.location,
+        type: req.body.type,
+        category: req.body.category,
+        experience:req.body.experience,
+        cv:fileName
+    }).save().then((candidate) => {
+        console.log("Registered Candidate", candidate)
         res.redirect('/candidatures');
-    })
-})
+    });
+});
 
 
 
@@ -203,19 +219,44 @@ router.get('/candidatures', (req, res)=>{
          });
      });
 });
+router.get('/candidatures/:id', (req, res)=>{
+     Candidature.find({_id:req.params.id}).then(candidate=>{
+         res.render('home/emploi/candidature-details',{
+            candidate:candidate
+         });
+     });
+});
 
-router.get('/candidat-emploi/:search_term', (req, res) => {
+router.get('/candidatures/create', (req, res) => {
+     Candidature.find({}).then(candidates=>{
+         res.render('home/emploi/candidatures-create',{
+            candidates:candidates
+         });
+     });
+});
+
+router.get('/candidatures-filter', (req, res) => {
+    console.log("body",req.params)
+    Candidature.find({ category: req.body.category,
+        experience: req.body.experience, location: req.body.location,
+    }).then(candidates => {
+            console.log(candidates)
+        res.render('home/emploi/candidatures',{
+           candidates:candidates
+        });
+    });
+});
+
+router.get('/candidatures-emploi/:search_term', (req, res) => {
     const search_term = req.params.search_term;
 
     Immobilier.find({ offre: false }).then(immobilier => {
         console.log(immobilier)
-        const search_result = immobilier.lenght !=0 && immobilier.filter((item) => {
-            return item.vendor_name.includes(search_term) || item.topic.includes(search_term) || item.description.includes(search_term) || item.loaction.includes(search_term);
-        })
-        res.render('home/immobilier/demande/demande-immobilier', { immobilier: search_result , search_term:search_term});
+        const search_result = immobilier.lenght != 0 && immobilier.filter((item) => {
+            return item.nom.includes(search_term) || item.email.includes(search_term) || item.description.includes(search_term) || item.location.includes(search_term) || item.experience.includes(search_term) || item.category.includes(search_term);
+        });
+        res.render('home/immobilier/demande/demande-immobilier', { candidat: search_result , search_term:search_term});
     });
 });
-
-
 
 module.exports = router;
