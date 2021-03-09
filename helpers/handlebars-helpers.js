@@ -9,7 +9,7 @@
      },
 
      generateTime: (date, format) => {
-         return moment(date).format(format)
+         return moment(date).format("ll")
      },
      shortenText: (description, length) => {
          return description.substring(0, length)

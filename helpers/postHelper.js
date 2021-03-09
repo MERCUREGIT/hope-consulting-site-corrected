@@ -66,7 +66,15 @@ module.exports = {
             }else {
                 fileName = '';
             }
-            // incomplete
+            dbmodelInstance.nom= req.body.name;
+            dbmodelInstance.phone_number= req.body.phone_number;
+            dbmodelInstance.email= req.body.email;
+            dbmodelInstance.description= req.body.description;
+            dbmodelInstance.location= req.body.location;
+            dbmodelInstance.type= req.body.type;
+            dbmodelInstance.category= req.body.category;
+            dbmodelInstance.experience=req.body.experience;
+            dbmodelInstance.cv = fileName;
         }
         dbmodelInstance.save().then(()=>res.redirect(redirectUrl))
     }

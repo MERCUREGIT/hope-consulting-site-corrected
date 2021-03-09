@@ -1,5 +1,6 @@
 <section class="parallax_window_in short" data-parallax="scroll"
-	data-image-src="img/pexels-sevenstorm-juhaszimrus-443383.jpg" data-natural-width="1400" data-natural-height="400">
+	data-image-src="https://infosconcourseducation.com/wp-content/uploads/2020/12/66d6f075031e4db7c4b99341c2d4e4dd.jpg"
+	data-natural-width="1400">
 	<div id="sub_content_in">
 		<div class="container">
 			<h1>Offres d'emploi</h1>
@@ -13,7 +14,33 @@
 <main>
 	<div class="container margin_60_35">
 		<div class="row">
-			{{>home/cards/emploi}}
+			<div class="col-xs-12 col-md-8">
+				{{#if offers.length}}
+				{{>home/cards/emploi}}
+				{{else}}
+				<div class=" col-xs-12 alert alert-danger" role="alert">
+					Oups! Aucune offre disponible {{#if search_term}}
+					pour
+
+					{{#if search_term.category}}
+					la category "{{search_term.category}}" ,
+					{{else}}
+					{{search_term}}
+					{{/if}}
+					{{#if search_term.location}}
+					à/au {{search_term.location}}
+					{{/if}},
+					{{#if search_term.experience}}
+					avec
+					{{search_term.experience}} d'experience
+					{{/if}}
+				</div>
+				{{/if}}
+				{{/if}}
+			</div>
+			<div class=" hidden-xs col-xs-12 col-md-4">
+				{{>home/filters/offre}}
+			</div>
 		</div>
 	</div>
 </main>
