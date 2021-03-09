@@ -153,18 +153,17 @@ router.get('/offres-emploi', (req, res)=>{
 
 router.get('/offres-emploi/:search_term', (req, res) => {
     const search_term = req.params.search_term;
-    console.log(search_term)
+    console.log("term",search_term)
 
     OffreEmploi.find().then(emploi => {
         const search_result =  emploi.lenght != 0 && emploi.filter((item) => {
                 return item.description.includes(search_term) ||  item.type.includes(search_term) || item.category.includes(search_term) || item.entreprise.includes(search_term) || item.Poste.includes(search_term) || item.experience.includes(search_term) || item.location.includes(search_term)
         });
-        console.log(search_result)
         res.render('home/emploi/offres', { offers: search_result , search_term:search_term});
     }).catch(err => {
         res.render('home/emploi/offres', { offers: false , search_term:search_term});
     });
-});
+});""
 
 router.get('/emploi/offre/create', (req, res)=>{
     OffreEmploi.find({}).then(offers=>{
@@ -178,6 +177,19 @@ router.post('/emploi/offre/create', (req, res) => {
     employmentOffer(req, res, OffreEmploi(),true,"/offres-emploi");
 });
 
+router.get('/offres-filter', (req, res) => {
+    const filterCategory = req.query.category;
+    const filterExperience = req.query.type;
+    const filterLocation = req.query.location;
+    console.log(req.query)
+    OffreEmploi.find({ category:filterCategory,
+        type: filterExperience, location:filterLocation
+    }).then(offers => {
+        res.render('home/emploi/offres',{
+            offers:offers, search_term:{category:filterCategory, experience:filterExperience,location:filterLocation }
+        });
+    });
+});
 
 /************************Candidature get *************************/
 
@@ -227,22 +239,20 @@ router.get('/candidatures/:id', (req, res)=>{
      });
 });
 
-router.get('/candidatures/create', (req, res) => {
-     Candidature.find({}).then(candidates=>{
-         res.render('home/emploi/candidatures-create',{
-            candidates:candidates
-         });
-     });
+router.get('/candidatures-create', (req, res) => {
+         res.render('home/emploi/candidatures-create');
 });
 
 router.get('/candidatures-filter', (req, res) => {
-    console.log("body",req.params)
-    Candidature.find({ category: req.body.category,
-        experience: req.body.experience, location: req.body.location,
+    const filterCategory = req.query.category;
+    const filterExperience = req.query.experience;
+    const filterLocation = req.query.location;
+
+    Candidature.find({ category:filterCategory,
+        experience: filterExperience, location:filterLocation
     }).then(candidates => {
-            console.log(candidates)
         res.render('home/emploi/candidatures',{
-           candidates:candidates
+           candidates:candidates, search_term:{category:filterCategory, experience:filterExperience,location:filterLocation  }
         });
     });
 });
@@ -250,12 +260,13 @@ router.get('/candidatures-filter', (req, res) => {
 router.get('/candidatures-emploi/:search_term', (req, res) => {
     const search_term = req.params.search_term;
 
-    Immobilier.find({ offre: false }).then(immobilier => {
-        console.log(immobilier)
-        const search_result = immobilier.lenght != 0 && immobilier.filter((item) => {
+    Candidature.find({ offre: false }).then(candidates => {
+        console.log(candidates)
+        const search_result = candidates.lenght != 0 && candidates.filter((item) => {
+            console.log("Selected Item",item)
             return item.nom.includes(search_term) || item.email.includes(search_term) || item.description.includes(search_term) || item.location.includes(search_term) || item.experience.includes(search_term) || item.category.includes(search_term);
         });
-        res.render('home/immobilier/demande/demande-immobilier', { candidat: search_result , search_term:search_term});
+        res.render('home/emploi/candidatures', { candidates: search_result , search_term:search_term});
     });
 });
 
