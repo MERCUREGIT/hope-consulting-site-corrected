@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 const morgan = require('morgan');
 const helmet = require('helmet')
 const http2 = require('http2');
-
+const logger = require('./config/winston');
 
     
 let env = process.env.NODE_ENV || 'development';
@@ -44,7 +44,7 @@ app.use(compression());
 app.use(cors());
 
 
-app.use(morgan('tiny'));
+app.use(morgan('tiny', { stream: logger.stream.write }));
 app.use(methodOverride('_method'));
 
 const { select, generateTime, shortenText } = require('./helpers/handlebars-helpers');
