@@ -1,0 +1,166 @@
+<div class=" hidden-xs col-xs-12 col-md-4">
+    <div style="padding: 10px;" class="jumbotron">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." id="searchField">
+            <span class="input-group-btn">
+                <button class="btn btn-default" onclick='handleChange("/candidatures-emploi/")' type="button">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </span>
+        </div><!-- /input-group -->
+        <p class="lead">
+        <h2>Trouvez facilement les bons candidats</h2>
+        Trouvez facilement les bons candidats. Pour ce faire, veuillez remplir le formulaire suivant
+        pour rationaliser votre recherche.
+        </p>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/candidatures">
+                    Candidatures
+                </a>
+            </li>
+            <li>
+                <a href='/candidatures/ {{#if search_term.category}}
+                    {{search_term.category}}" / {{else}} {{search_term}} {{/if}}'>
+                    #
+                    {{#with search_term}}
+                    {{#if search_term}}
+                    {{#if search_term.category}}
+                    {{search_term.category}}"/
+                    {{else}}
+                    {{search_term}}
+                    {{/if}}
+                    {{#if search_term.location}}
+                    {{search_term.location}}/
+                    {{/if}},
+                    {{#if search_term.experience}}
+                    experience de {{search_term.experience}} ans
+                    {{/if}}
+    </div>
+    {{/if}}
+    {{/with}}
+
+
+    </a>
+    </li>
+    </ol>
+    <form action="/candidatures-filter" enctype="multipart/form-data" method="get">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label>
+                        Category:
+                    </label>
+                    <select class="form-control" name="category" id="Category" required>
+                        <optgroup label="BATIMENT">
+                            <option value="ARHITECTURE">ARHITECTURE</option>
+                            <option value="IMAGENIERIE">IMAGENIERIE</option>
+                            <option value="TECHNICIENS">TECHNICIENS</option>
+                            <option value="CONDUCTEUR  DE TRAVAUX">CONDUCTEUR DE TRAVAUX</option>
+                        </optgroup>
+                        <optgroup label="SECURITE ET GARDINAGE">
+                            <option value="AGENT DE SECURITÉ">AGENT DE SECURITÉ</option>
+                            <option value="COMATEURS">COMATEURS</option>
+                            <option value="SECURITE INCENDIE">SECURITE INCENDIE</option>
+                            <option value="DRESSEURS">DRESSEURS</option>
+                        </optgroup>
+                        <optgroup label="COMMUNICATION ET MARKETING">
+                            <option value="COMMUNICATEURS">COMMUNICATEURS</option>
+                            <option value="COMMUNITY MANAGER">COMMUNITY MANAGER</option>
+                            <option value="JOURNALISME">JOURNALISME</option>
+                            <option value="ARCHIVISME">ARCHIVISME</option>
+                            <option value="TRADUCTEUR">TRADUCTEUR</option>
+                        </optgroup>
+                        <optgroup label="COMPTABILITE ET FISCALITE">
+                            <option value="COMPTABILTÉ">COMPTABILTÉ</option>
+                            <option value="FISCALITÉ">FISCALITÉ</option>
+                            <option value="AUDITEURS">AUDITEURS</option>
+                            <option value="GESTION DE STOCK ">GESTION DE STOCK </option>
+                        </optgroup>
+                        </option>
+                        <option value="FINANCE">
+                            FINANCE
+                        </option>
+                        <optgroup label="EVENEMENTIEL">
+                            <option value="HOTESSE">HOTESSE</option>
+                            <option value="RAYONNISTE">RAYONNISTE</option>
+                            <option value="COMMERCIAUX">COMMERCIAUX</option>
+                            <option value="FEMME/HOMMEDE SALLE">FEMME/HOMMEDE SALLE</option>
+                        </optgroup>
+                        <optgroup label="RESTAURANTS ET SERVICES">
+                            <option value="CUISINIER / CUSINIÉRE">CUISINIER / CUSINIÉRE</option>
+                            <option value="SERVEURS">SERVEURS</option>
+                            <option value="BARMANS">BARMANS</option>
+                            <option value="MENAGÉRE">MENAGÉRE</option>
+                            <option value="CASIERE">CASIERE</option>
+                            <option value="CHAUFFEURS">CHAUFFEURS</option>
+                        </optgroup>
+                        <optgroup label="TRANSFOMATION">
+                            <option value="DEVELOPPEUR">DEVELOPPEUR</option>
+                        </optgroup>
+                        <option value="SECRETAIRE ET ADMINISTRATION">
+                            SECRETAIRE ET ADMINISTRATION
+                        </option>
+                        <option value="JURIDIQUE ET CONSEIL">
+                            JURIDIQUE ET CONSEIL
+                        </option>
+                        <optgroup label="COMMERCE">
+                            <option value="VENDEUR">VENDEUR</option>
+                        </optgroup>
+                        <option value="AGENTS DE COMPTOIRE">
+                            AGENTS DE COMPTOIRE
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="location">
+                        Dans quelle region (Lieu)?:
+                    </label>
+                    <select class="form-control" name="location" id="location" required>
+                        <option value="Centre">
+                            Centre
+                        </option>
+                        <option value="Littoral">
+                            Littoral
+                        </option>
+                        <option value="L'Est">
+                            L'Est
+                        </option>
+                        <option value="Nord Ouest">
+                            Nord Ouest
+                        </option>
+                        <option value="Ouest">
+                            Ouest
+                        </option>
+                        <option value="Extreme Nord">
+                            Extreme Nord
+                        </option>
+                        <option value="Le Sud">
+                            Le Sud
+                        </option>
+                        <option value="Sud Ouest">
+                            Sud Ouest
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="experience">
+                        années d'expérience:
+                    </label>
+                    <input type="number" class="form-control styled" id="experience" name="experience"
+                        placeholder="0000" />
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <button style="width: 100%;" type="submit" class="btn btn-primary">
+                    Rescherche
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

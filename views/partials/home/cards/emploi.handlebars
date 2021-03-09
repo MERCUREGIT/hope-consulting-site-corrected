@@ -2,7 +2,7 @@
 {{#if isPublic}}
 <div class="row"
     style="border: 0.5px solid rgba(13, 255, 0, 0.481);  background-color:white; border-radius:5px; padding:5px">
-    <div style="border-right:0.5px solid rgba(0, 102, 255, 0.481) ;" class="col-sm-10 col-md-7">
+    <div style="border-right:0.5px solid rgba(0, 102, 255, 0.481) ;" class="col-sm-7 col-md-7">
         <h4> <strong class="list-group-item-heading">{{entreprise}} {{#if experience}} avec {{experience}} requis
                 {{/if}}</strong>
             recrute au poste de <a href="/"><i> {{poste}}</i></a> jusqau <strong>{{generateTime date_expiration
@@ -21,7 +21,7 @@
             </small>
         </div>
     </div>
-    <div class="col-sm-2 col-md-5">
+    <div class="hidden-xs col-sm-5 col-md-5">
         <ul>
             <li> Type : <a href="/emploi/{{type}}"><strong>{{type}}</strong> </a></li>
             <li>Conatct : {{ phone_number}} </li>

@@ -2,8 +2,9 @@
 <article class="article">
 	<div class="col-sm-6 col-md-6">
 		<div class="thumbnail">
-			<a target="_blanc" href="/uploads/{{image}}"><img class="cropped" height="80px" width="100%"
+			{{#if offre}} <a target="_blanc" href="/uploads/{{image}}"><img class="cropped" height="80px" width="100%"
 					src="/uploads/{{image}}" alt=""></a>
+			{{/if}}
 			<div class="caption">
 				<h5>Publier par {{vendor_name}} | {{generateTime date 'MMMM Do YYYY'}}</h5>
 				<p class="text-danger">{{loaction}} <strong>+237 697 18 18 57</strong> </p>
