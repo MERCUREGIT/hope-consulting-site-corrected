@@ -4,7 +4,7 @@
   "description": "Hope cosulting initial website",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "jest  --watchAll --coverage"
   },
   "repository": {
