@@ -7,7 +7,9 @@
 			{{/if}}
 			<div class="caption">
 				<h5>Publier par {{vendor_name}} | {{generateTime date 'MMMM Do YYYY'}}</h5>
-				<p class="text-danger">{{loaction}} <strong>+237 697 18 18 57</strong> </p>
+				<p class="text-danger">{{loaction}}{{#if town}} > {{town}} {{/if}} {{#if quater}} > {{quater}} {{/if}}
+					<strong>+237 697 18 18 57</strong>
+				</p>
 				<p>
 				<ul>
 					{{#if offre}}

@@ -13,7 +13,9 @@ const OffreEmploiSchema = new Schema({
     type: {type:String, required:true},
     poste: { type: String, required: true },
     date_expiration:{type: Date, required:true},
-    location: {type:String, required:true},
+    location: { type: String, required: true },
+    town: {type: String,},
+    quater: {type: String},
     date: {type: Date,default: Date.now()},
     description: { type: String, required: true, },
     isPublic:{type:Boolean, required: true, default:true,}

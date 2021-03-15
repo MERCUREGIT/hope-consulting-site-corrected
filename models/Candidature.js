@@ -11,6 +11,7 @@ const CandidatureSchema = new Schema({
    category: {type: String,required: true},
    type: {type:String, required:true},
    location: {type:String, required:true},
+   town: {type:String},
    date: {type: Date,default: Date.now()},
    description: { type: String, required: true, },
    cv:{type:String, required: true}

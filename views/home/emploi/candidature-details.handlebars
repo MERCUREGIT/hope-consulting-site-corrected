@@ -76,9 +76,9 @@
                         <h3>Contacter <i style="color: rgb(0, 89, 255);">{{nom}}</i></h3>
                         <li>Email : {{email}}</li>
                         <li>Telephone : {{phone_number}}</li>
-                        <li>Habit au :
+                        <li>Habit :
                             <strong>
-                                {{ location}}
+                                {{ location}} {{#if town}} > {{town}} {{/if}} {{#if quater}} > {{quater}} {{/if}}
                             </strong>
                         </li>
                     </ul>

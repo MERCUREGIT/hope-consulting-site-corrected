@@ -21,6 +21,12 @@ const Immobilier = new Schema({
     email: {
         type: String,
     },
+    town: {
+        type: String,
+    },
+    quater: {
+        type: String,
+    },
     phone_number: {
         type: String,
         required: true,

@@ -3,10 +3,11 @@ const { deleteOne } = require("../models/Immobilier");
 module.exports = function (mongoose,done=function(){}) {
     let env = process.env.NODE_ENV || 'development';
 if (env == 'development') {
+// if (false) {
     return mongoose.connect('mongodb://localhost:27017/hope-consulting?readPreference=primary&appname=MongoDB%20Compass&ssl=false', { useNewUrlParser: true, useUnifiedTopology: true }).then((db) => {
     done()
     console.log("DEVELOPMENT MONGO CONNECTED");
-});
+    });
 }
 else
 {

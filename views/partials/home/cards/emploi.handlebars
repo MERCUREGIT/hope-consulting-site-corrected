@@ -27,7 +27,7 @@
             <li>Conatct : {{ phone_number}} </li>
             <li>Category : {{ category}} </li>
             <li>Email : {{ email}} </li>
-            <li>Lieu :{{location}}</li>
+            <li>Lieu :{{location}}{{#if town}} > {{town}} {{/if}} {{#if quater}} > {{quater}} {{/if}}</li>
             <li>Web : {{ site_web}} </li>
 
         </ul>

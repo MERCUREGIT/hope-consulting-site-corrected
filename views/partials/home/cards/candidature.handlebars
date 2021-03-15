@@ -1,5 +1,5 @@
 {{#each candidates}}
-<div class="col-xs-12 col-md-3">
+<div class="col-xs-12 col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">{{nom}}</div>
         <div class="panel-body">
@@ -7,7 +7,8 @@
                 {{category}} avec {{ experience}} ans d'experience
             </p>
             <ul style="margin-left: -30px;">
-                <li>Vie à <strong>{{location}}</strong></li>
+                <li>Vie à <strong>{{location}} {{#if town}} > {{town}} {{/if}} {{#if quater}} > {{quater}} {{/if}}
+                    </strong></li>
             </ul>
         </div>
         <div class="panel-footer"> <a href="/candidatures/{{_id}}">voir <strong>Cv & autre</strong></a>

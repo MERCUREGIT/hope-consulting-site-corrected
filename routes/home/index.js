@@ -211,6 +211,7 @@ router.post('/candidatures', (req, res) => {
         phone_number: req.body.phone_number,
         email: req.body.email,
         description: req.body.description,
+        town:req.body.town,
         location: req.body.location,
         type: req.body.type,
         category: req.body.category,
