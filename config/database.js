@@ -1,4 +1,3 @@
-const { deleteOne } = require("../models/Immobilier");
 
 module.exports = function (mongoose,done=function(){}) {
     let env = process.env.NODE_ENV || 'development';
