@@ -1,46 +1,49 @@
-	<section class="parallax_window_in short" data-parallax="scroll" data-image-src="img/pexels-tima-miroshnichenko-5439390.jpg" data-natural-width="1400" data-natural-height="400">
-		<div id="sub_content_in">
-			<div class="container">
-				<h1>Demandes immobilieres</h1>
-				<p>Postez vos demandes immobilieres ici</p>
-			</div>
+<section class="parallax_window_in short" data-parallax="scroll"
+	data-image-src="img/pexels-tima-miroshnichenko-5439390.jpg" data-natural-width="1400" data-natural-height="400">
+	<div id="sub_content_in">
+		<div class="container">
+			<h1>Demandes immobilières</h1>
+			<p>Postez vos demandes immobilières ici</p>
 		</div>
-	</section><!-- /section -->
-    
-    <main>
+	</div>
+</section><!-- /section -->
+
+<main>
 	<div class="container margin_60_35">
-    	<div class="row">
-            <div class="col-md-12">
-                <div class="shop-section">
-                        <div class="row">
-                           {{#each immobilier}}
-                                <div class="shop-item col-lg-4 col-md-6 col-sm-6">
-                                    <div class="inner-box">
-                                        <div class="image-box">
-                                            <div>{{description}}</div>
-                                        </div>
-                                        <div class="product_description">
-                                            <h3><a href="#">{{generateTime date 'MMMM Do YYYY'}}</a></h3>
-                                            <div class="price">
-                                                <span>{{topic}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /article -->
-                           {{/each}}
-                            
-                            
-                        </div>
-                        
-                    <hr>
-                    
-                    <div class="row text-center">
-                        <div class="col-sm-6">
-                            <button type="submit" class="btn_1 col-sm-5" data-toggle="modal" data-target="#exampleModal">Poster une demande</button>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="shop-section">
+					<div class="row">
+						{{#each immobilier}}
+						<div class="shop-item col-lg-4 col-md-6 col-sm-6">
+							<div class="inner-box">
+								<div class="image-box">
+									<div>{{description}}</div>
+								</div>
+								<div class="product_description">
+									<h3><a href="#">{{generateTime date 'MMMM Do YYYY'}}</a></h3>
+									<div class="price">
+										<span>{{topic}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /article -->
+						{{/each}}
+
+
+					</div>
+
+					<hr>
+
+					<div class="row text-center">
+						<div class="col-sm-6">
+							<button type="submit" class="btn_1 col-sm-5" data-toggle="modal"
+								data-target="#exampleModal">Poster une demande</button>
+						</div>
+					</div>
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
 						<div class="modal-dialog-centered modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -57,13 +60,16 @@
 												<div class="col-md-6 col-sm-6">
 													<div class="form-group">
 														<label>Nom:</label>
-														<input type="text" class="form-control styled" id="name_contact" name="name_contact" placeholder="Ali Baba" required>
+														<input type="text" class="form-control styled" id="name_contact"
+															name="name_contact" placeholder="Ali Baba" required>
 													</div>
 												</div>
 												<div class="col-md-6 col-sm-6">
 													<div class="form-group">
 														<label>Téléphone:</label>
-														<input type="text" id="tel_contact" name="tel_contact" class="form-control styled" placeholder="xxxxxxxxx" required pattern="6[98257][0-9]{7}">
+														<input type="text" id="tel_contact" name="tel_contact"
+															class="form-control styled" placeholder="xxxxxxxxx" required
+															pattern="6[98257][0-9]{7}">
 													</div>
 												</div>
 											</div>
@@ -71,39 +77,48 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<label>Email:</label>
-														<input type="email" id="email_contact" name="email_contact" class="form-control styled" placeholder="adresse@email.com" required>
+														<input type="email" id="email_contact" name="email_contact"
+															class="form-control styled" placeholder="adresse@email.com"
+															required>
 													</div>
 												</div>
-                                            </div>
-                                            <div class="row">
+											</div>
+											<div class="row">
 												<div class="col-md-12">
 													<div class="form-group">
 														<label>Objet:</label>
-														<input type="text" id="object_contact" name="object_contact" class="form-control styled" required>
+														<input type="text" id="object_contact" name="object_contact"
+															class="form-control styled" required>
 													</div>
 												</div>
-											</div> 
+											</div>
 											<div class="row">
 												<div class="col-md-12">
 													<div class="form-group">
 														<label>Description de la demande:</label>
-														<textarea rows="5" id="message_contact" name="message_contact" class="form-control styled" style="height:100px;" placeholder="Contenu" required></textarea>
+														<textarea rows="5" id="message_contact" name="message_contact"
+															class="form-control styled" style="height:100px;"
+															placeholder="Contenu" required></textarea>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-6">
-													<p><input type="submit" value="Envoyer" class="btn_1" id="submit_demand"></p>
+													<p><input type="submit" value="Envoyer" class="btn_1"
+															id="submit_demand"></p>
 												</div>
 											</div>
 										</form>
 									</div>
 								</div>
 							</div>
-						  </div>
 						</div>
-                </div><!-- End row -->
-            </div><!-- End col -->
-        </div><!--/row-->
-    </div><!--/container-->       
-    </main><!--/main-->
+					</div>
+				</div><!-- End row -->
+			</div><!-- End col -->
+		</div>
+		<!--/row-->
+	</div>
+	<!--/container-->
+</main>
+<!--/main-->

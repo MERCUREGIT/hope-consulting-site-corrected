@@ -18,10 +18,12 @@
 <main>
 	<div class="container margin_60_35">
 		<div class="row">
+			{{#if image}}
 			<div class="col-sm-12 col-md-6">
 				<a target="_blanc" href="/uploads/{{image}}"><img style="border-radius: 10px;" width="100%"
 						src="/uploads/{{image}}" alt=""></a>
 			</div>
+			{{/if}}
 			<div class="col-sm-12 col-md-6">
 				<div class="bloglist singlepost">
 					<h2>{{topic}} </h2>

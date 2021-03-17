@@ -118,7 +118,7 @@ router.get('/immobilier/details/:id', (req, res) => {
 
 /*****************post demande et offre immobilier ********/
 
-router.post('/groundOffers',  (req, res)=>{
+router.post('/offres-immobilier',  (req, res)=>{
     postHelper(req, res, Immobilier(),true,"/offres-immobilier");
 });
 
