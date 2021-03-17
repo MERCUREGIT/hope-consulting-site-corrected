@@ -20,6 +20,7 @@ require("./config/database")(mongoose).catch(error => console.log(error));
 // app.use(helmet());
 
 app.use(express.static(path.join(__dirname, 'public/')));
+app.use("/uploads/",express.static(path.join(__dirname, 'public/uploads/')));
 app.use("/cv",express.static(path.join(__dirname, 'public/uploads')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
