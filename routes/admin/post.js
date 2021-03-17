@@ -14,7 +14,7 @@ module.exports = function (router, dashboard_url) {
         let file = req.files.image;
         fileName = Date.now() + '-' + file.name;
         let dirUploads = './public/uploads';
-        file.mv(dirUploads + fileName, err => {
+        file.mv(uploadDir + fileName, err => {
             if (err) throw err;
         });
     }else {
