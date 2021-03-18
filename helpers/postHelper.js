@@ -1,3 +1,5 @@
+const {  uploadDir } = require('./upload-helper');
+
 module.exports = {
 
     postHelper: (req, res, dbmodelInstance, offerStatus, redirectPage)=>{
@@ -5,8 +7,7 @@ module.exports = {
             console.log(req.files.file_contact)
             let file = req.files.file_contact;
             var fileName = Date.now() + '-' + file.name;
-            let dirUploads = './public/uploads/';
-            file.mv(dirUploads + fileName, err => {
+            file.mv(uploadDir + fileName, err => {
                 if (err) throw err;
             });
         }else {
@@ -63,8 +64,7 @@ module.exports = {
                 console.log(req.files.cv)
                 let file = req.files.cv;
                 var fileName = Date.now() + '-' + file.name;
-                let dirUploads = './public/uploads/';
-                file.mv(dirUploads + fileName, err => {
+                file.mv(uploadDir + fileName, err => {
                     if (err) throw err;
                 });
             }else {
