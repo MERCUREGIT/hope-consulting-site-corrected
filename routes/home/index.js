@@ -60,7 +60,7 @@ router.get('/plans', (req, res) => {
 router.get('/offres-immobilier', (req, res) => {
     const page = req.query.page;
     Immobilier.find({ offre: true }).then(immobilier => {
-        res.render('home/immobilier/offre/offres-immobilier', { immobilier:paginator(page,immobilier,20)});
+        res.render('home/immobilier/offre/offres-immobilier', { immobilier:paginator(page,immobilier,10)});
     });
 });
 
@@ -86,7 +86,7 @@ router.get('/offres-immobilier/:search_term', (req, res) => {
 router.get('/demandes-immobilier',(req, res)=>{
     Immobilier.find({ offre: false }).then(immobilier => {
         const page = req.query.page;
-        res.render('home/immobilier/demande/demande-immobilier', { immobilier: paginator(page,immobilier,20)});
+        res.render('home/immobilier/demande/demande-immobilier', { immobilier: paginator(page,immobilier,10)});
     });
 });
 router.get('/demandes-immobilier/create',(req, res)=>{

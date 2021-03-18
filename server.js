@@ -30,11 +30,11 @@ app.use(cors());
 app.use(morgan('combined', { stream: logger.stream.write }));
 app.use(methodOverride('_method'));
 
-const { select, generateTime, shortenText } = require('./helpers/handlebars-helpers');
+const { select, generateTime, shortenText, paginate } = require('./helpers/handlebars-helpers');
 app.engine('handlebars', exphbs({
     defaultLayout: 'home',
     handlebars: allowInsecurePrototypeAccess(Handlebars),
-    helpers: { select: select, generateTime: generateTime, shortenText:shortenText }
+    helpers: { select: select, generateTime: generateTime, shortenText:shortenText, paginate:paginate }
 }));
 app.set('view engine', 'handlebars');
 
