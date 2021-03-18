@@ -6,6 +6,7 @@ const PlanEtDessin = require('../../models/PlanEtDessin');
 const OffreEmploi = require('../../models/OffreEmploi');
 const RealisationEtSuivi = require('../../models/RealisationEtSuivi');
 const {postHelper, employmentOffer } = require('../../helpers/postHelper');
+const paginator = require('../../helpers/paginations');
 const Candidature = require('../../models/Candidature');
 const { isEmpty, uploadDir } = require('../../helpers/upload-helper');
 const { filter } = require('compression');
@@ -55,9 +56,11 @@ router.get('/plans', (req, res) => {
 //*****************get demande immobilier ********/
 
 
-router.get('/offres-immobilier',(req, res)=>{
-    Immobilier.find({offre:true}).then(immobilier => {
-        res.render('home/immobilier/offre/offres-immobilier', { immobilier: immobilier});
+
+router.get('/offres-immobilier', (req, res) => {
+    const page = req.query.page;
+    Immobilier.find({ offre: true }).then(immobilier => {
+        res.render('home/immobilier/offre/offres-immobilier', { immobilier:paginator(page,immobilier,20)});
     });
 });
 
@@ -81,8 +84,9 @@ router.get('/offres-immobilier/:search_term', (req, res) => {
 //*****************get offre immobilier ********/
 
 router.get('/demandes-immobilier',(req, res)=>{
-    Immobilier.find({offre:false}).then(immobilier => {
-        res.render('home/immobilier/demande/demande-immobilier', { immobilier: immobilier});
+    Immobilier.find({ offre: false }).then(immobilier => {
+        const page = req.query.page;
+        res.render('home/immobilier/demande/demande-immobilier', { immobilier: paginator(page,immobilier,20)});
     });
 });
 router.get('/demandes-immobilier/create',(req, res)=>{
