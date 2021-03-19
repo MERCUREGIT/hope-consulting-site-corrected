@@ -15,7 +15,7 @@ const morgan = require('morgan');
 const helmet = require('helmet')
 const http2 = require('http2');
 const logger = require('./config/winston');
-const corsOptions = require('./config/whitelistedAddress')
+// const corsOptions = require('./config/whitelistedAddress')
 
 require("./config/database")(mongoose).catch(error => console.log(error));
 // app.use(helmet());
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(upload());
 app.use(compression());
-app.options(cors());
+app.use(cors());
 app.use(morgan('combined', { stream: logger.stream.write }));
 app.use(methodOverride('_method'));
 
