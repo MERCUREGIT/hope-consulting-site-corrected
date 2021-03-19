@@ -27,8 +27,7 @@ module.exports = function (router, dashboard_url) {
     });
 
     router.get('/', (req, res) => {
-        console.log(req.files);
-        res.redirect(dashboard_url)
+        res.redirect(dashboard_url);
     });
 
     router.get('/offres-immobilier-admin', (req, res) => {
