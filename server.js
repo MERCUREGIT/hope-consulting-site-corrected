@@ -27,17 +27,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(upload());
 app.use(compression());
-app.options(cors(corsOptions));
+app.options(cors());
 app.use(morgan('combined', { stream: logger.stream.write }));
 app.use(methodOverride('_method'));
 
 
-app.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', ['https://hope-consulting-admin.netlify.app',"https://www.hope-consulting-cm.com" ]);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.append('Access-Control-Allow-Origin', ['https://hope-consulting-admin.netlify.app',"https://www.hope-consulting-cm.com" ]);
+//     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     res.append('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// });
 
 
 
