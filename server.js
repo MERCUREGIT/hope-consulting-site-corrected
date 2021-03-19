@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(upload());
 app.use(compression());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(morgan('combined', { stream: logger.stream.write }));
 app.use(methodOverride('_method'));
 
