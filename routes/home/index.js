@@ -101,7 +101,7 @@ router.get('/demandes-immobilier/:search_term', (req, res) => {
     Immobilier.find({ offre: false }).then(immobilier => {
         console.log(immobilier)
         const search_result = immobilier.lenght !=0 && immobilier.filter((item) => {
-            return item.vendor_name.includes(search_term) || item.topic.includes(search_term) || item.description.includes(search_term) || item.loaction.includes(search_term);
+            return item.vendor_name.includes(search_term).toLo || item.topic.includes(search_term) || item.description.includes(search_term) || item.loaction.includes(search_term);
         })
         res.render('home/immobilier/demande/demande-immobilier', { immobilier: search_result , search_term:search_term});
     });
@@ -157,11 +157,10 @@ router.get('/offres-emploi', (req, res)=>{
 
 router.get('/offres-emploi/:search_term', (req, res) => {
     const search_term = req.params.search_term;
-    console.log("term",search_term)
 
     OffreEmploi.find().then(emploi => {
-        const search_result =  emploi.lenght != 0 && emploi.filter((item) => {
-                return item.description.includes(search_term) ||  item.type.includes(search_term) || item.category.includes(search_term) || item.entreprise.includes(search_term) || item.Poste.includes(search_term) || item.experience.includes(search_term) || item.location.includes(search_term)
+        const search_result = emploi.lenght != 0 && emploi.filter((item) => {
+                return item.description.includes(search_term) ||  item.type.includes(search_term) || item.category.includes(search_term) || item.entreprise.includes(search_term) || item.poste.includes(search_term) || item.experience.includes(search_term) || item.location.includes(search_term)
         });
         res.render('home/emploi/offres', { offers: search_result , search_term:search_term});
     }).catch(err => {

@@ -5,7 +5,8 @@
     <div style="border-right:0.5px solid rgba(0, 102, 255, 0.481) ;" class="col-sm-7 col-md-7">
         <h4> <strong class="list-group-item-heading">{{entreprise}} {{#if experience}} avec {{experience}} requis
                 {{/if}}</strong>
-            recrute au poste de <a href="/"><i> {{poste}}</i></a> jusqau <strong>{{generateTime date_expiration
+            recrute au poste de <a href="/offres-emploi/{{poste}}"><i> {{poste}}</i></a> jusqau <strong>{{generateTime
+                date_expiration
                 'MMMM Do
                 YYYY'}}</strong></h4>
 
@@ -23,7 +24,7 @@
     </div>
     <div class="hidden-xs col-sm-5 col-md-5">
         <ul>
-            <li> Type : <a href="/emploi/{{type}}"><strong>{{type}}</strong> </a></li>
+            <li> Type : <a href="/offres-emploi/{{type}}"><strong>{{type}}</strong> </a></li>
             <li>Conatct : {{ phone_number}} </li>
             <li>Category : {{ category}} </li>
             <li>Email : {{ email}} </li>

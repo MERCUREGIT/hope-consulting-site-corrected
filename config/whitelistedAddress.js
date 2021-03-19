@@ -1,4 +1,4 @@
-const whiteList =['https://hope-consulting-admin.netlify.app','https://hope-consulting-admin.netlify.app/', "https://www.hope-consulting-cm.com","https://www.hope-consulting-cm.com/" ]
+const whiteList =['https://hope-consulting-admin.netlify.app',"https://www.hope-consulting-cm.com" ]
 const corsOptions={
     origin: function(origin, callback) {
         if(whiteList.indexOf(origin) !== -1){
