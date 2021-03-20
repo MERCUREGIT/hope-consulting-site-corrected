@@ -12,12 +12,8 @@ module.exports = {
             return true;
         }
     }
-
-
 }
 
-
-// console.log(path.join(__dirname,'/bissa'))
 
 
 
